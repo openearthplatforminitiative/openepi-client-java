@@ -13,14 +13,14 @@
 
 package io.openepi.deforestation.api;
 
-import io.openepi.deforestation.ApiCallback;
 import io.openepi.deforestation.ApiClient;
-import io.openepi.deforestation.ApiException;
-import io.openepi.deforestation.ApiResponse;
 import io.openepi.deforestation.Configuration;
-import io.openepi.deforestation.Pair;
-import io.openepi.deforestation.ProgressRequestBody;
-import io.openepi.deforestation.ProgressResponseBody;
+import io.openepi.common.ApiCallback;
+import io.openepi.common.ApiException;
+import io.openepi.common.ApiResponse;
+import io.openepi.common.Pair;
+import io.openepi.common.ProgressRequestBody;
+import io.openepi.common.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
 
