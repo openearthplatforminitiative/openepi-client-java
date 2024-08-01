@@ -29,6 +29,10 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
 }
 
+javadoc {
+   destinationDir = file("docs/javadoc")
+}
+
 tasks.test {
     // Enable JUnit 5 (Gradle 4.6+).
     useJUnitPlatform()
