@@ -32,3 +32,7 @@ jq '.components.schemas.Properties.properties.extent = {
 }' openapi.json > formatted.json
 openapi-generator generate -i ./formatted.json -g java -o ./geocoding
 ```
+
+## Supported Java environments
+Works on Java 8 (and higher)
+
