@@ -3,10 +3,17 @@ plugins {
 }
 
 group = 'io.openepi'
-version = '1.0-SNAPSHOT'
+version = '0.1'
 
 repositories {
     mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+    withJavadocJar() // Include Javadoc
+    withSourcesJar() // Include source code
 }
 
 dependencies {
@@ -30,7 +37,8 @@ dependencies {
 }
 
 javadoc {
-   destinationDir = file("docs/javadoc")
+    destinationDir = file("docs/javadoc")
+    javadoc.options.addStringOption('Xdoclint:none', '-quiet') // Skip warnings when generating
 }
 
 tasks.test {
