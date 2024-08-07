@@ -22,10 +22,10 @@ import static org.mockito.Mockito.when;
 /**
  * API tests for DefaultApi
  */
-public class DefaultApiTest {
+public class CropHealthApiTest {
 
     @Mock
-    private DefaultApi api = new DefaultApi();
+    private CropHealthApi api = new CropHealthApi();
 
     @BeforeEach
     public void setUp() throws Exception {

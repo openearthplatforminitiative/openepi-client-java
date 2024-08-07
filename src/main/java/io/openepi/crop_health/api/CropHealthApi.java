@@ -19,18 +19,13 @@ import io.openepi.common.ApiCallback;
 import io.openepi.common.ApiException;
 import io.openepi.common.ApiResponse;
 import io.openepi.common.Pair;
-import io.openepi.common.ProgressRequestBody;
-import io.openepi.common.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
 
 
 import io.openepi.crop_health.model.BinaryPredictionResponse;
 import io.openepi.crop_health.model.MultiHLTPredictionResponse;
 import io.openepi.crop_health.model.Ping200Response;
-import io.openepi.crop_health.model.Ping500Response;
 import io.openepi.crop_health.model.SingleHLTPredictionResponse;
 
 import java.io.File;
@@ -40,16 +35,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DefaultApi {
+public class CropHealthApi {
     private ApiClient localVarApiClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
-    public DefaultApi() {
+    public CropHealthApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public DefaultApi(ApiClient apiClient) {
+    public CropHealthApi(ApiClient apiClient) {
         this.localVarApiClient = apiClient;
     }
 

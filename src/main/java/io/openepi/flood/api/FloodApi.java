@@ -209,6 +209,35 @@ public class FloodApi {
         return localVarResp.getData();
     }
 
+
+    /**
+     * Get detailed forecast for a location
+     * Returns a detailed forecast of the next 30 days either for the cell at the given coordinates or for the cells within the given bounding box
+     * @param lon Longitude (required)
+     * @param lat Latitude (required)
+     * @param includeNeighbors Whether or not to include neighboring cells in the response (optional, default to false)
+     * @return DetailedResponseModel
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public DetailedResponseModel detailedDetailedGetSinglePoint(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors) throws ApiException {
+        return detailedDetailedGet(lon, lat, null, null, null, null, includeNeighbors, null, null);
+    }
+
+    /**
+     * Get detailed forecast for a location
+     * Returns a detailed forecast of the next 30 days either for the cell at the given coordinates or for the cells within the given bounding box
+     * @param minLon Minimum longitude (required)
+     * @param maxLon Maximum longitude (required)
+     * @param minLat Minimum latitude (required)
+     * @param maxLat Maximum latitude (required)
+     * @param includeNeighbors Whether or not to include neighboring cells in the response (optional, default to false)
+     * @return DetailedResponseModel
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public DetailedResponseModel detailedDetailedGetBoundingBox(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors) throws ApiException {
+        return detailedDetailedGet(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, null, null);
+    }
+
     /**
      * Get detailed forecast for a location
      * Returns a detailed forecast of the next 30 days either for the cell at the given coordinates or for the cells within the given bounding box
@@ -265,6 +294,38 @@ public class FloodApi {
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    /**
+     * Get detailed forecast for a location point (asynchronously)
+     * Returns a detailed forecast of the next 30 days for the cell at the given coordinates
+     * @param lon Longitude (required)
+     * @param lat Latitude (required)
+     * @param includeNeighbors Whether or not to include neighboring cells in the response (optional, default to false)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public okhttp3.Call detailedDetailedGetSinglePointAsync(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors, final ApiCallback<DetailedResponseModel> _callback) throws ApiException {
+        return detailedDetailedGetAsync(lon, lat, null, null, null, null, includeNeighbors, null, null, _callback);
+    }
+
+    /**
+     * Get detailed forecast for a bounding box (asynchronously)
+     * Returns a detailed forecast of the next 30 days for the cells within the given bounding box
+     * @param minLon Minimum longitude (required)
+     * @param maxLon Maximum longitude (required)
+     * @param minLat Minimum latitude (required)
+     * @param maxLat Maximum latitude (required)
+     * @param includeNeighbors Whether or not to include neighboring cells in the response (optional, default to false)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public okhttp3.Call detailedDetailedGetBoundingBoxAsync(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, final ApiCallback<DetailedResponseModel> _callback) throws ApiException {
+        return detailedDetailedGetAsync(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, null, null, _callback);
+    }
+
+
     /**
      * Build call for summarySummaryGet
      * @param lon Longitude (optional)
@@ -387,6 +448,34 @@ public class FloodApi {
     }
 
     /**
+     * Get summary forecast for a single point location
+     * Returns a summary forecast of the next 30 days for the cell at the given coordinates
+     * @param lon Longitude (required)
+     * @param lat Latitude (required)
+     * @param includeNeighbors Whether or not to include neighboring cells in the response (optional, default to false)
+     * @return SummaryResponseModel
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public SummaryResponseModel summarySummaryGetSinglePoint(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors) throws ApiException {
+        return summarySummaryGet(lon, lat, null, null, null, null, includeNeighbors);
+    }
+
+    /**
+     * Get summary forecast for a bounding box
+     * Returns a summary forecast of the next 30 days for the cells within the given bounding box
+     * @param minLon Minimum longitude (required)
+     * @param maxLon Maximum longitude (required)
+     * @param minLat Minimum latitude (required)
+     * @param maxLat Maximum latitude (required)
+     * @param includeNeighbors Whether or not to include neighboring cells in the response (optional, default to false)
+     * @return SummaryResponseModel
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public SummaryResponseModel summarySummaryGetBoundingBox(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors) throws ApiException {
+        return summarySummaryGet(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors);
+    }
+
+    /**
      * Get summary forecast for a location
      * Returns a summary forecast of the next 30 days either for the cell at the given coordinates or for the cells within the given bounding box
      * @param lon Longitude (optional)
@@ -438,6 +527,38 @@ public class FloodApi {
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    /**
+     * Get summary forecast for a location (asynchronously)
+     * Returns a summary forecast of the next 30 days for the cell at the given coordinates
+     * @param lon Longitude (optional)
+     * @param lat Latitude (optional)
+     * @param includeNeighbors Whether or not to include neighboring cells in the response (optional, default to false)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     */
+    public okhttp3.Call summarySummaryGetSinglePointAsync(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors, final ApiCallback<SummaryResponseModel> _callback) throws ApiException {
+        return summarySummaryGetAsync(lon, lat, null, null, null, null, includeNeighbors, _callback);
+    }
+
+    /**
+     * Get summary forecast for a bounding box (asynchronously)
+     * Returns a summary forecast of the next 30 days for the cells within the given bounding box
+     * @param minLon Minimum longitude (optional)
+     * @param maxLon Maximum longitude (optional)
+     * @param minLat Minimum latitude (optional)
+     * @param maxLat Maximum latitude (optional)
+     * @param includeNeighbors Whether or not to include neighboring cells in the response (optional, default to false)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public okhttp3.Call summarySummaryGetBoundingBoxAsync(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, final ApiCallback<SummaryResponseModel> _callback) throws ApiException {
+        return summarySummaryGetAsync(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, _callback);
+    }
+
     /**
      * Build call for thresholdThresholdGet
      * @param lon Longitude (optional)
@@ -555,6 +676,32 @@ public class FloodApi {
 
     /**
      * Get return period thresholds for a location
+     * Returns the 2-, 5-, and 20-year return period thresholds for the cell at the given coordinates
+     * @param lon Longitude (required)
+     * @param lat Latitude (required)
+     * @return ThresholdResponseModel
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ThresholdResponseModel thresholdThresholdGetSinglePoint(BigDecimal lon, BigDecimal lat) throws ApiException {
+        return thresholdThresholdGet(lon, lat, null, null, null, null);
+    }
+
+    /**
+     * Get return period thresholds for a location
+     * Returns the 2-, 5-, and 20-year return period thresholds for the cells within the given bounding box
+     * @param minLon Minimum longitude (required)
+     * @param maxLon Maximum longitude (required)
+     * @param minLat Minimum latitude (required)
+     * @param maxLat Maximum latitude (required)
+     * @return ThresholdResponseModel
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ThresholdResponseModel thresholdThresholdGetBoundingBox(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat) throws ApiException {
+        return thresholdThresholdGet(null, null, minLon, maxLon, minLat, maxLat);
+    }
+
+    /**
+     * Get return period thresholds for a location
      * Returns the 2-, 5-, and 20-year return period thresholds either for the cell at the given coordinates or for the cells within the given bounding box
      * @param lon Longitude (optional)
      * @param lat Latitude (optional)
@@ -602,5 +749,34 @@ public class FloodApi {
         Type localVarReturnType = new TypeToken<ThresholdResponseModel>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
+    }
+
+
+    /**
+     * Get return period thresholds for a location (asynchronously)
+     * Returns the 2-, 5-, and 20-year return period thresholds for the cell at the given coordinates
+     * @param lon Longitude (required)
+     * @param lat Latitude (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public okhttp3.Call thresholdThresholdGetSinglePointAsync(BigDecimal lon, BigDecimal lat, final ApiCallback<ThresholdResponseModel> _callback) throws ApiException {
+        return thresholdThresholdGetAsync(lon, lat, null, null, null, null, _callback);
+    }
+
+    /**
+     * Get return period thresholds for a location (asynchronously)
+     * Returns the 2-, 5-, and 20-year return period thresholds for the cells within the given bounding box
+     * @param minLon Minimum longitude (required)
+     * @param maxLon Maximum longitude (required)
+     * @param minLat Minimum latitude (required)
+     * @param maxLat Maximum latitude (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public okhttp3.Call thresholdThresholdGetBoundingBoxAsync(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, final ApiCallback<ThresholdResponseModel> _callback) throws ApiException {
+        return thresholdThresholdGetAsync(null, null, minLon, maxLon, minLat, maxLat, _callback);
     }
 }

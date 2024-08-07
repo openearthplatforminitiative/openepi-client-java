@@ -187,6 +187,24 @@ public class WeatherApi {
      * Returns the weather forecast for the next 9 days for the given location
      * @param lat Latitude (required)
      * @param lon Longitude (required)
+     * @return METJSONForecast
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+    <table summary="Response Details" border="1">
+    <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+    <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+    <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+    </table>
+     */
+    public METJSONForecast getForecastLocationforecastGet(BigDecimal lat, BigDecimal lon) throws ApiException {
+        return getForecastLocationforecastGet(lat, lon, null);
+    }
+
+    /**
+     * Get weather forecast
+     * Returns the weather forecast for the next 9 days for the given location
+     * @param lat Latitude (required)
+     * @param lon Longitude (required)
      * @param altitude Altitude above sea level in meters. (optional)
      * @return ApiResponse&lt;METJSONForecast&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -226,6 +244,26 @@ public class WeatherApi {
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    /**
+     * Get weather forecast (asynchronously)
+     * Returns the weather forecast for the next 9 days for the given location
+     * @param lat Latitude (required)
+     * @param lon Longitude (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+    <table summary="Response Details" border="1">
+    <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+    <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+    <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+    </table>
+     */
+    public okhttp3.Call getForecastLocationforecastGetAsync(BigDecimal lat, BigDecimal lon, final ApiCallback<METJSONForecast> _callback) throws ApiException {
+        return getForecastLocationforecastGetAsync(lat, lon, null, _callback);
+    }
+
     /**
      * Build call for getSunriseSunriseGet
      * @param lat Latitude (required)
@@ -338,6 +376,24 @@ public class WeatherApi {
      * Returns the sunrise time and sunset time for the given location
      * @param lat Latitude (required)
      * @param lon Longitude (required)
+     * @return METJSONSunrise
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+    <table summary="Response Details" border="1">
+    <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+    <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+    <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+    </table>
+     */
+    public METJSONSunrise getSunriseSunriseGet(BigDecimal lat, BigDecimal lon) throws ApiException {
+        return getSunriseSunriseGet(lat, lon, null);
+    }
+
+    /**
+     * Get sunrise and sunset information
+     * Returns the sunrise time and sunset time for the given location
+     * @param lat Latitude (required)
+     * @param lon Longitude (required)
      * @param date Date (optional)
      * @return ApiResponse&lt;METJSONSunrise&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -376,5 +432,24 @@ public class WeatherApi {
         Type localVarReturnType = new TypeToken<METJSONSunrise>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
+    }
+
+    /**
+     * Get sunrise and sunset information (asynchronously)
+     * Returns the sunrise time and sunset time for the given location
+     * @param lat Latitude (required)
+     * @param lon Longitude (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+    <table summary="Response Details" border="1">
+    <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+    <tr><td> 200 </td><td> Successful Response </td><td>  -  </td></tr>
+    <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
+    </table>
+     */
+    public okhttp3.Call getSunriseSunriseGetAsync(BigDecimal lat, BigDecimal lon, final ApiCallback<METJSONSunrise> _callback) throws ApiException {
+        return getSunriseSunriseGetAsync(lat, lon, null, _callback);
     }
 }
