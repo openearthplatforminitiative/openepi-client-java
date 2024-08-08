@@ -905,7 +905,7 @@ public class ApiClient {
             // ensuring a default content type
             contentType = "application/json";
         }
-        if (isJsonMime(contentType)) {
+        if (isJsonMime(contentType) || contentType.startsWith("text/plain")) {
             return JSON.deserialize(respBody, returnType);
         } else if (returnType.equals(String.class)) {
             // Expecting string, return the raw response body.
