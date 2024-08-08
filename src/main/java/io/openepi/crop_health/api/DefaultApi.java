@@ -243,6 +243,7 @@ public class DefaultApi {
         }
 
         final String[] localVarContentTypes = {
+                "image/jpeg"
         };
         final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
