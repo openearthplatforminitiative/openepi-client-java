@@ -192,6 +192,19 @@ public class GeocodingApi {
      * Geocoding
      * Returns a GeoJSON FeatureCollection of places matching the search query
      * @param q Search query (required)
+     * @return FeatureCollection
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public FeatureCollection geocodingGet(String q) throws ApiException {
+        return geocodingGet(q, null, null, null, null);
+    }
+
+
+
+    /**
+     * Geocoding
+     * Returns a GeoJSON FeatureCollection of places matching the search query
+     * @param q Search query (required)
      * @param lat Geocode with priority to this latitude (optional)
      * @param lon Geocode with priority to this longitude (optional)
      * @param lang Set preferred language (e.g. \&quot;default\&quot;, \&quot;en\&quot;, \&quot;de\&quot;, \&quot;fr\&quot;) (optional)
@@ -236,6 +249,19 @@ public class GeocodingApi {
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
+    /**
+     * Geocoding (asynchronously)
+     * Returns a GeoJSON FeatureCollection of places matching the search query
+     * @param q Search query (required)
+     * @return FeatureCollection
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public okhttp3.Call geocodingGetAsync(String q, final ApiCallback<FeatureCollection> _callback) throws ApiException {
+        return geocodingGetAsync(q, null, null, null, null, _callback);
+    }
+
+
     /**
      * Build call for reverseGeocodingReverseGet
      * @param lat Latitude (required)
@@ -348,6 +374,7 @@ public class GeocodingApi {
         ApiResponse<FeatureCollection> localVarResp = reverseGeocodingReverseGetWithHttpInfo(lat, lon, lang, limit);
         return localVarResp.getData();
     }
+
 
     /**
      * Reverse Geocoding

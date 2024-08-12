@@ -202,6 +202,31 @@ public class DeforestationApi {
     }
 
     /**
+     * Get yearly forest cover loss within a river basin for a single point.
+     * Returns the estimated deforested area per year within a river basin for a single point.
+     * @param lon Longitude of the point to retrieve data for. (required)
+     * @param lat Latitude of the point to retrieve data for. (required)
+     * @return DeforestationBasinGeoJSON
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public DeforestationBasinGeoJSON lossyearBasinGetSinglePoint(BigDecimal lon, BigDecimal lat) throws ApiException {
+        return lossyearBasinGet(lon, lat, null, null, null, null, null, null);
+    }
+
+    /**
+     * Get yearly forest cover loss within a river basin for a bounding box.
+     * @param minLon Minimum longitude of the bounding box to retrieve data for. (required)
+     * @param minLat Minimum latitude of the bounding box to retrieve data for. (required)
+     * @param maxLon Maximum longitude of the bounding box to retrieve data for. (required)
+     * @param maxLat Maximum latitude of the bounding box to retrieve data for. (required)
+     * @return DeforestationBasinGeoJSON
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public DeforestationBasinGeoJSON lossyearBasinGetBoundingBox(BigDecimal minLon, BigDecimal minLat, BigDecimal maxLon, BigDecimal maxLat) throws ApiException {
+        return lossyearBasinGet(null, null, minLon, minLat, maxLon, maxLat, null, null);
+    }
+
+    /**
      * Get yearly forest cover loss within a river basin
      * Returns the estimated deforested area per year within a river basin for the given location. To retrieve data for a single point both &#x60;lon&#x60; and &#x60;lon&#x60; must be included in the request. To retrieve data within a bounding box all of &#x60;min_lon&#x60;, &#x60;min_lat&#x60;, &#x60;max_lon&#x60;, &#x60;max_lat&#x60; must be included in the request.
      * @param lon Longitude of the point to retrieve data for. (optional)
@@ -254,5 +279,34 @@ public class DeforestationApi {
         Type localVarReturnType = new TypeToken<DeforestationBasinGeoJSON>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
+    }
+
+
+    /**
+     * Get yearly forest cover loss within a river basin (asynchronously)
+     * Returns the estimated deforested area per year within a river basin for the given location. To retrieve data for a single point both &#x60;lon&#x60; and &#x60;lon&#x60; must be included in the request. To retrieve data within a bounding box all of &#x60;min_lon&#x60;, &#x60;min_lat&#x60;, &#x60;max_lon&#x60;, &#x60;max_lat&#x60; must be included in the request.
+     * @param lon Longitude of the point to retrieve data for. (required)
+     * @param lat Latitude of the point to retrieve data for. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public okhttp3.Call lossyearBasinGetSinglePointAsync(BigDecimal lon, BigDecimal lat, final ApiCallback<DeforestationBasinGeoJSON> _callback) throws ApiException {
+        return lossyearBasinGetAsync(lon, lat, null, null, null, null, null, null, _callback);
+    }
+
+    /**
+     * Get yearly forest cover loss within a river basin (asynchronously)
+     * Returns the estimated deforested area per year within a river basin for the given location. To retrieve data for a single point both &#x60;lon&#x60; and &#x60;lon&#x60; must be included in the request. To retrieve data within a bounding box all of &#x60;min_lon&#x60;, &#x60;min_lat&#x60;, &#x60;max_lon&#x60;, &#x60;max_lat&#x60; must be included in the request.
+     * @param minLon Minimum longitude of the bounding box to retrieve data for. (required)
+     * @param minLat Minimum latitude of the bounding box to retrieve data for. (required)
+     * @param maxLon Maximum longitude of the bounding box to retrieve data for. (required)
+     * @param maxLat Maximum latitude of the bounding box to retrieve data for. (required)
+     * @param _callback The callback to be executed when the API call finishes (required)
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public okhttp3.Call lossyearBasinGetBoundingBoxAsync(BigDecimal minLon, BigDecimal minLat, BigDecimal maxLon, BigDecimal maxLat, final ApiCallback<DeforestationBasinGeoJSON> _callback) throws ApiException {
+        return lossyearBasinGetAsync(null, null, minLon, minLat, maxLon, maxLat, null, null, _callback);
     }
 }
