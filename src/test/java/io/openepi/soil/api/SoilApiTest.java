@@ -27,7 +27,7 @@ public class SoilApiTest {
     }
 
     @Test
-    public void getSoilPropertyPropertyGetTest() throws ApiException {
+    public void getSoilPropertyTest() throws ApiException {
         BigDecimal lon = new BigDecimal(9.58);
         BigDecimal lat = new BigDecimal(60.1);
         List<SoilDepthLabels> depths = Arrays.asList(SoilDepthLabels._0_5CM);
@@ -41,15 +41,15 @@ public class SoilApiTest {
         layerList.addLayersItem(layer);
         mockResponse.setProperties(layerList);
 
-        when(api.getSoilPropertyPropertyGet(lon, lat, depths, properties, values)).thenReturn(mockResponse);
+        when(api.getSoilProperty(lon, lat, depths, properties, values)).thenReturn(mockResponse);
 
-        SoilPropertyJSON response = api.getSoilPropertyPropertyGet(lon, lat, depths, properties, values);
+        SoilPropertyJSON response = api.getSoilProperty(lon, lat, depths, properties, values);
         assertEquals(SoilPropertiesCodes.BDOD, response.getProperties().getLayers().get(0).getCode());
     }
 
 
     @Test
-    public void getSoilTypeSummaryTypeSummaryGetTest() throws ApiException {
+    public void getSoilTypeSummaryTest() throws ApiException {
         BigDecimal minLon = new BigDecimal("9.5");
         BigDecimal maxLon = new BigDecimal("9.6");
         BigDecimal minLat = new BigDecimal("60.1");
@@ -62,15 +62,15 @@ public class SoilApiTest {
         type.addSummariesItem(summary);
         mockResponse.setProperties(type);
 
-        when(api.getSoilTypeSummaryTypeSummaryGet(minLon, maxLon, minLat, maxLat)).thenReturn(mockResponse);
+        when(api.getSoilTypeSummary(minLon, maxLon, minLat, maxLat)).thenReturn(mockResponse);
 
-        SoilTypeSummaryJSON response = api.getSoilTypeSummaryTypeSummaryGet(minLon, maxLon, minLat, maxLat);
+        SoilTypeSummaryJSON response = api.getSoilTypeSummary(minLon, maxLon, minLat, maxLat);
         assertEquals(SoilTypes.ALBELUVISOLS, response.getProperties().getSummaries().get(0).getSoilType());
     }
 
 
     @Test
-    public void getSoilTypeTypeGetTest() throws ApiException {
+    public void getSoilTypeTest() throws ApiException {
         BigDecimal lon = new BigDecimal("9.58");
         BigDecimal lat = new BigDecimal("60.1");
 
@@ -79,8 +79,8 @@ public class SoilApiTest {
         type.setMostProbableSoilType(SoilTypes.ALBELUVISOLS);
         mockResponse.setProperties(type);
 
-        when(api.getSoilTypeTypeGet(lon, lat, null)).thenReturn(mockResponse);
-        SoilTypeJSON response = api.getSoilTypeTypeGet(lon, lat, null);
+        when(api.getSoilType(lon, lat, null)).thenReturn(mockResponse);
+        SoilTypeJSON response = api.getSoilType(lon, lat, null);
 
         assertEquals(SoilTypes.ALBELUVISOLS, response.getProperties().getMostProbableSoilType());
     }

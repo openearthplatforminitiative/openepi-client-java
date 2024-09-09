@@ -19,16 +19,12 @@ import io.openepi.common.ApiCallback;
 import io.openepi.common.ApiException;
 import io.openepi.common.ApiResponse;
 import io.openepi.common.Pair;
-import io.openepi.common.ProgressRequestBody;
-import io.openepi.common.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
-
 
 import java.math.BigDecimal;
-import io.openepi.weather.model.HTTPValidationError;
+
 import io.openepi.weather.model.METJSONForecast;
 import io.openepi.weather.model.METJSONSunrise;
 
@@ -177,7 +173,7 @@ public class WeatherApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public METJSONForecast getForecastLocationforecastGet(BigDecimal lat, BigDecimal lon, Integer altitude) throws ApiException {
+    public METJSONForecast getLocationForecast(BigDecimal lat, BigDecimal lon, Integer altitude) throws ApiException {
         ApiResponse<METJSONForecast> localVarResp = getForecastLocationforecastGetWithHttpInfo(lat, lon, altitude);
         return localVarResp.getData();
     }
@@ -196,8 +192,8 @@ public class WeatherApi {
     <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
     </table>
      */
-    public METJSONForecast getForecastLocationforecastGet(BigDecimal lat, BigDecimal lon) throws ApiException {
-        return getForecastLocationforecastGet(lat, lon, null);
+    public METJSONForecast getLocationForecast(BigDecimal lat, BigDecimal lon) throws ApiException {
+        return getLocationForecast(lat, lon, null);
     }
 
     /**
@@ -237,7 +233,7 @@ public class WeatherApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getForecastLocationforecastGetAsync(BigDecimal lat, BigDecimal lon, Integer altitude, final ApiCallback<METJSONForecast> _callback) throws ApiException {
+    public okhttp3.Call getLocationForecastAsync(BigDecimal lat, BigDecimal lon, Integer altitude, final ApiCallback<METJSONForecast> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getForecastLocationforecastGetValidateBeforeCall(lat, lon, altitude, _callback);
         Type localVarReturnType = new TypeToken<METJSONForecast>(){}.getType();
@@ -260,8 +256,8 @@ public class WeatherApi {
     <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
     </table>
      */
-    public okhttp3.Call getForecastLocationforecastGetAsync(BigDecimal lat, BigDecimal lon, final ApiCallback<METJSONForecast> _callback) throws ApiException {
-        return getForecastLocationforecastGetAsync(lat, lon, null, _callback);
+    public okhttp3.Call getLocationForecastAsync(BigDecimal lat, BigDecimal lon, final ApiCallback<METJSONForecast> _callback) throws ApiException {
+        return getLocationForecastAsync(lat, lon, null, _callback);
     }
 
     /**
@@ -366,7 +362,7 @@ public class WeatherApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public METJSONSunrise getSunriseSunriseGet(BigDecimal lat, BigDecimal lon, String date) throws ApiException {
+    public METJSONSunrise getSunriseAndSunset(BigDecimal lat, BigDecimal lon, String date) throws ApiException {
         ApiResponse<METJSONSunrise> localVarResp = getSunriseSunriseGetWithHttpInfo(lat, lon, date);
         return localVarResp.getData();
     }
@@ -385,8 +381,8 @@ public class WeatherApi {
     <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
     </table>
      */
-    public METJSONSunrise getSunriseSunriseGet(BigDecimal lat, BigDecimal lon) throws ApiException {
-        return getSunriseSunriseGet(lat, lon, null);
+    public METJSONSunrise getSunriseAndSunset(BigDecimal lat, BigDecimal lon) throws ApiException {
+        return getSunriseAndSunset(lat, lon, null);
     }
 
     /**
@@ -426,7 +422,7 @@ public class WeatherApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSunriseSunriseGetAsync(BigDecimal lat, BigDecimal lon, String date, final ApiCallback<METJSONSunrise> _callback) throws ApiException {
+    public okhttp3.Call getSunriseAndSunsetAsync(BigDecimal lat, BigDecimal lon, String date, final ApiCallback<METJSONSunrise> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getSunriseSunriseGetValidateBeforeCall(lat, lon, date, _callback);
         Type localVarReturnType = new TypeToken<METJSONSunrise>(){}.getType();
@@ -449,7 +445,7 @@ public class WeatherApi {
     <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
     </table>
      */
-    public okhttp3.Call getSunriseSunriseGetAsync(BigDecimal lat, BigDecimal lon, final ApiCallback<METJSONSunrise> _callback) throws ApiException {
-        return getSunriseSunriseGetAsync(lat, lon, null, _callback);
+    public okhttp3.Call getSunriseAndSunsetAsync(BigDecimal lat, BigDecimal lon, final ApiCallback<METJSONSunrise> _callback) throws ApiException {
+        return getSunriseAndSunsetAsync(lat, lon, null, _callback);
     }
 }

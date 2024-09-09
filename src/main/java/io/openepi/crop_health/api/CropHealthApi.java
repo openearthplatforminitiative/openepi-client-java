@@ -274,7 +274,7 @@ public class CropHealthApi {
         <tr><td> 200 </td><td> Predicted class confidences, all summing to 1.0. </td><td>  -  </td></tr>
      </table>
      */
-    public BinaryPredictionResponse predictionsWithBinary(File body) throws ApiException {
+    public BinaryPredictionResponse postPredictionBinary(File body) throws ApiException {
         ApiResponse<BinaryPredictionResponse> localVarResp = predictionsWithBinaryWithHttpInfo(body);
         return localVarResp.getData();
     }
@@ -316,7 +316,7 @@ public class CropHealthApi {
         <tr><td> 200 </td><td> Predicted class confidences, all summing to 1.0. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call predictionsWithBinaryAsync(File body, final ApiCallback<BinaryPredictionResponse> _callback) throws ApiException {
+    public okhttp3.Call postPredictionBinaryAsync(File body, final ApiCallback<BinaryPredictionResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = predictionsWithBinaryValidateBeforeCall(body, _callback);
         Type localVarReturnType = new TypeToken<BinaryPredictionResponse>(){}.getType();
@@ -408,7 +408,7 @@ public class CropHealthApi {
         <tr><td> 200 </td><td> Predicted class confidences, all summing to 1.0. </td><td>  -  </td></tr>
      </table>
      */
-    public MultiHLTPredictionResponse predictionsWithMultiHLT(File body) throws ApiException {
+    public MultiHLTPredictionResponse postPredictionMulti(File body) throws ApiException {
         ApiResponse<MultiHLTPredictionResponse> localVarResp = predictionsWithMultiHLTWithHttpInfo(body);
         return localVarResp.getData();
     }
@@ -450,7 +450,7 @@ public class CropHealthApi {
         <tr><td> 200 </td><td> Predicted class confidences, all summing to 1.0. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call predictionsWithMultiHLTAsync(File body, final ApiCallback<MultiHLTPredictionResponse> _callback) throws ApiException {
+    public okhttp3.Call postPredictionMultiAsync(File body, final ApiCallback<MultiHLTPredictionResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = predictionsWithMultiHLTValidateBeforeCall(body, _callback);
         Type localVarReturnType = new TypeToken<MultiHLTPredictionResponse>(){}.getType();
@@ -542,7 +542,7 @@ public class CropHealthApi {
         <tr><td> 200 </td><td> Predicted class confidences, all summing to 1.0. </td><td>  -  </td></tr>
      </table>
      */
-    public SingleHLTPredictionResponse predictionsWithSingleHLT(File body) throws ApiException {
+    public SingleHLTPredictionResponse postPredictionSingle(File body) throws ApiException {
         ApiResponse<SingleHLTPredictionResponse> localVarResp = predictionsWithSingleHLTWithHttpInfo(body);
         return localVarResp.getData();
     }
@@ -584,7 +584,7 @@ public class CropHealthApi {
         <tr><td> 200 </td><td> Predicted class confidences, all summing to 1.0. </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call predictionsWithSingleHLTAsync(File body, final ApiCallback<SingleHLTPredictionResponse> _callback) throws ApiException {
+    public okhttp3.Call postPredictionSingleAsync(File body, final ApiCallback<SingleHLTPredictionResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = predictionsWithSingleHLTValidateBeforeCall(body, _callback);
         Type localVarReturnType = new TypeToken<SingleHLTPredictionResponse>(){}.getType();

@@ -35,6 +35,7 @@ Works on Java 8 (and higher)
 import io.openepi.client.CropHealthApi;
 import io.openepi.client.ApiException;
 import io.openepi.crop_health.model.BinaryPredictionResponse;
+import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
@@ -52,6 +53,7 @@ public class Main {
 ```
 
 ### Deforestation
+
 ```java
 import io.openepi.common.ApiException;
 import io.openepi.deforestation.api.DeforestationApi;
@@ -66,7 +68,7 @@ public class Main {
         try {
             BigDecimal lon = new BigDecimal("30.06");
             BigDecimal lat = BigDecimal.valueOf(-1.94);
-            DeforestationBasinGeoJSON response = api.lossyearBasinGetSinglePoint(lon, lat);
+            DeforestationBasinGeoJSON response = api.getLossyearBasinSinglePoint(lon, lat);
             System.out.println(response.getFeatures());
         } catch (ApiException e) {
             System.err.println("Exception when calling DeforestationApi#lossyearBasinGet");
@@ -77,6 +79,7 @@ public class Main {
 ```
 
 ### Flood
+
 ```java
 import io.openepi.flood.api.FloodApi;
 import io.openepi.flood.model.SummaryResponseModel;
@@ -90,7 +93,7 @@ public class Main {
         try {
             BigDecimal lon = new BigDecimal("33.57");
             BigDecimal lat = BigDecimal.valueOf(-1.37);
-            SummaryResponseModel response = api.summarySummaryGetSinglePoint(lon, lat, false);
+            SummaryResponseModel response = api.getForecastSummarySinglePoint(lon, lat, false);
             System.out.println(response.getQueriedLocation().getFeatures());
         } catch (ApiException e) {
             System.err.println("Exception when calling FloodApi#getFlood");
@@ -101,6 +104,7 @@ public class Main {
 ```
 
 ### Geocoding
+
 ```java
 import io.openepi.geocoding.api.GeocodingApi;
 import io.openepi.geocoding.model.FeatureCollection;
@@ -110,7 +114,7 @@ public class Main {
     public static void main(String[] args) {
         GeocodingApi api = new GeocodingApi();
         try {
-            FeatureCollection response = api.geocodingGet("Rwanda");
+            FeatureCollection response = api.getGeocoding("Rwanda");
             System.out.println(response);
         } catch (ApiException e) {
             System.err.println("Exception when calling GeocodingApi#getGeocoding");
@@ -122,6 +126,7 @@ public class Main {
 ```
 
 ### Soil
+
 ```java
 import io.openepi.soil.api.SoilApi;
 import io.openepi.soil.model.SoilTypeJSON;
@@ -135,7 +140,7 @@ public class Main {
         BigDecimal lat = new BigDecimal("60.1");
         SoilApi api = new SoilApi();
         try {
-            SoilTypeJSON response = api.getSoilTypeTypeGet(lon, lat, null);
+            SoilTypeJSON response = api.getSoilType(lon, lat, null);
             System.out.println(response);
         } catch (ApiException e) {
             System.err.println("Exception when calling SoilApi#getSoil");
@@ -147,6 +152,7 @@ public class Main {
 ```
 
 ### Weather
+
 ```java
 import io.openepi.weather.api.WeatherApi;
 import io.openepi.weather.model.METJSONForecast;
@@ -161,7 +167,7 @@ public class Main {
 
         WeatherApi api = new WeatherApi();
         try {
-            METJSONForecast response = api.getForecastLocationforecastGet(lat, lon, null);
+            METJSONForecast response = api.getLocationForecast(lat, lon, null);
             System.out.println(response.getProperties().getTimeseries().get(0).getData().getInstant().getDetails());
         } catch (ApiException e) {
             System.err.println("Exception when calling WeatherApi#getWeather");

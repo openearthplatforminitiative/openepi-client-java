@@ -23,12 +23,10 @@ import io.openepi.common.Pair;
 
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
-
 
 import java.math.BigDecimal;
 import io.openepi.flood.model.DetailedResponseModel;
-import io.openepi.flood.model.HTTPValidationError;
+
 import java.time.LocalDate;
 import io.openepi.flood.model.SummaryResponseModel;
 import io.openepi.flood.model.ThresholdResponseModel;
@@ -204,7 +202,7 @@ public class FloodApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public DetailedResponseModel detailedDetailedGet(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, LocalDate startDate, LocalDate endDate) throws ApiException {
+    public DetailedResponseModel getDetailedForecast(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, LocalDate startDate, LocalDate endDate) throws ApiException {
         ApiResponse<DetailedResponseModel> localVarResp = detailedDetailedGetWithHttpInfo(lon, lat, minLon, maxLon, minLat, maxLat, includeNeighbors, startDate, endDate);
         return localVarResp.getData();
     }
@@ -219,8 +217,8 @@ public class FloodApi {
      * @return DetailedResponseModel
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DetailedResponseModel detailedDetailedGetSinglePoint(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors) throws ApiException {
-        return detailedDetailedGet(lon, lat, null, null, null, null, includeNeighbors, null, null);
+    public DetailedResponseModel getDetailedForecastSinglePoint(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors) throws ApiException {
+        return getDetailedForecast(lon, lat, null, null, null, null, includeNeighbors, null, null);
     }
 
     /**
@@ -234,8 +232,8 @@ public class FloodApi {
      * @return DetailedResponseModel
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DetailedResponseModel detailedDetailedGetBoundingBox(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors) throws ApiException {
-        return detailedDetailedGet(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, null, null);
+    public DetailedResponseModel getDetailedForecastBoundingBox(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors) throws ApiException {
+        return getDetailedForecast(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, null, null);
     }
 
     /**
@@ -287,7 +285,7 @@ public class FloodApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call detailedDetailedGetAsync(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, LocalDate startDate, LocalDate endDate, final ApiCallback<DetailedResponseModel> _callback) throws ApiException {
+    public okhttp3.Call getDetailedForecastAsync(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, LocalDate startDate, LocalDate endDate, final ApiCallback<DetailedResponseModel> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = detailedDetailedGetValidateBeforeCall(lon, lat, minLon, maxLon, minLat, maxLat, includeNeighbors, startDate, endDate, _callback);
         Type localVarReturnType = new TypeToken<DetailedResponseModel>(){}.getType();
@@ -305,8 +303,8 @@ public class FloodApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public okhttp3.Call detailedDetailedGetSinglePointAsync(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors, final ApiCallback<DetailedResponseModel> _callback) throws ApiException {
-        return detailedDetailedGetAsync(lon, lat, null, null, null, null, includeNeighbors, null, null, _callback);
+    public okhttp3.Call getDetailedForecastSinglePointAsync(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors, final ApiCallback<DetailedResponseModel> _callback) throws ApiException {
+        return getDetailedForecastAsync(lon, lat, null, null, null, null, includeNeighbors, null, null, _callback);
     }
 
     /**
@@ -321,8 +319,8 @@ public class FloodApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public okhttp3.Call detailedDetailedGetBoundingBoxAsync(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, final ApiCallback<DetailedResponseModel> _callback) throws ApiException {
-        return detailedDetailedGetAsync(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, null, null, _callback);
+    public okhttp3.Call getDetailedForecastBoundingBoxAsync(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, final ApiCallback<DetailedResponseModel> _callback) throws ApiException {
+        return getDetailedForecastAsync(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, null, null, _callback);
     }
 
 
@@ -442,7 +440,7 @@ public class FloodApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public SummaryResponseModel summarySummaryGet(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors) throws ApiException {
+    public SummaryResponseModel getForecastSummary(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors) throws ApiException {
         ApiResponse<SummaryResponseModel> localVarResp = summarySummaryGetWithHttpInfo(lon, lat, minLon, maxLon, minLat, maxLat, includeNeighbors);
         return localVarResp.getData();
     }
@@ -456,8 +454,8 @@ public class FloodApi {
      * @return SummaryResponseModel
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SummaryResponseModel summarySummaryGetSinglePoint(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors) throws ApiException {
-        return summarySummaryGet(lon, lat, null, null, null, null, includeNeighbors);
+    public SummaryResponseModel getForecastSummarySinglePoint(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors) throws ApiException {
+        return getForecastSummary(lon, lat, null, null, null, null, includeNeighbors);
     }
 
     /**
@@ -471,8 +469,8 @@ public class FloodApi {
      * @return SummaryResponseModel
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SummaryResponseModel summarySummaryGetBoundingBox(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors) throws ApiException {
-        return summarySummaryGet(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors);
+    public SummaryResponseModel getForecastSummaryBoundingBox(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors) throws ApiException {
+        return getForecastSummary(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors);
     }
 
     /**
@@ -520,7 +518,7 @@ public class FloodApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call summarySummaryGetAsync(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, final ApiCallback<SummaryResponseModel> _callback) throws ApiException {
+    public okhttp3.Call getForecastSummaryAsync(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, final ApiCallback<SummaryResponseModel> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = summarySummaryGetValidateBeforeCall(lon, lat, minLon, maxLon, minLat, maxLat, includeNeighbors, _callback);
         Type localVarReturnType = new TypeToken<SummaryResponseModel>(){}.getType();
@@ -539,8 +537,8 @@ public class FloodApi {
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
      */
-    public okhttp3.Call summarySummaryGetSinglePointAsync(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors, final ApiCallback<SummaryResponseModel> _callback) throws ApiException {
-        return summarySummaryGetAsync(lon, lat, null, null, null, null, includeNeighbors, _callback);
+    public okhttp3.Call getForecastSummarySinglePointAsync(BigDecimal lon, BigDecimal lat, Boolean includeNeighbors, final ApiCallback<SummaryResponseModel> _callback) throws ApiException {
+        return getForecastSummaryAsync(lon, lat, null, null, null, null, includeNeighbors, _callback);
     }
 
     /**
@@ -555,8 +553,8 @@ public class FloodApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public okhttp3.Call summarySummaryGetBoundingBoxAsync(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, final ApiCallback<SummaryResponseModel> _callback) throws ApiException {
-        return summarySummaryGetAsync(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, _callback);
+    public okhttp3.Call getForecastSummaryBoundingBoxAsync(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, Boolean includeNeighbors, final ApiCallback<SummaryResponseModel> _callback) throws ApiException {
+        return getForecastSummaryAsync(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, _callback);
     }
 
     /**
@@ -669,7 +667,7 @@ public class FloodApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public ThresholdResponseModel thresholdThresholdGet(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat) throws ApiException {
+    public ThresholdResponseModel getThreshold(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat) throws ApiException {
         ApiResponse<ThresholdResponseModel> localVarResp = thresholdThresholdGetWithHttpInfo(lon, lat, minLon, maxLon, minLat, maxLat);
         return localVarResp.getData();
     }
@@ -682,8 +680,8 @@ public class FloodApi {
      * @return ThresholdResponseModel
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ThresholdResponseModel thresholdThresholdGetSinglePoint(BigDecimal lon, BigDecimal lat) throws ApiException {
-        return thresholdThresholdGet(lon, lat, null, null, null, null);
+    public ThresholdResponseModel getThresholdSinglePoint(BigDecimal lon, BigDecimal lat) throws ApiException {
+        return getThreshold(lon, lat, null, null, null, null);
     }
 
     /**
@@ -696,8 +694,8 @@ public class FloodApi {
      * @return ThresholdResponseModel
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ThresholdResponseModel thresholdThresholdGetBoundingBox(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat) throws ApiException {
-        return thresholdThresholdGet(null, null, minLon, maxLon, minLat, maxLat);
+    public ThresholdResponseModel getThresholdBoundingBox(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat) throws ApiException {
+        return getThreshold(null, null, minLon, maxLon, minLat, maxLat);
     }
 
     /**
@@ -743,7 +741,7 @@ public class FloodApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call thresholdThresholdGetAsync(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, final ApiCallback<ThresholdResponseModel> _callback) throws ApiException {
+    public okhttp3.Call getThresholdAsync(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, final ApiCallback<ThresholdResponseModel> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = thresholdThresholdGetValidateBeforeCall(lon, lat, minLon, maxLon, minLat, maxLat, _callback);
         Type localVarReturnType = new TypeToken<ThresholdResponseModel>(){}.getType();
@@ -761,8 +759,8 @@ public class FloodApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public okhttp3.Call thresholdThresholdGetSinglePointAsync(BigDecimal lon, BigDecimal lat, final ApiCallback<ThresholdResponseModel> _callback) throws ApiException {
-        return thresholdThresholdGetAsync(lon, lat, null, null, null, null, _callback);
+    public okhttp3.Call getThresholdSinglePointAsync(BigDecimal lon, BigDecimal lat, final ApiCallback<ThresholdResponseModel> _callback) throws ApiException {
+        return getThresholdAsync(lon, lat, null, null, null, null, _callback);
     }
 
     /**
@@ -776,7 +774,7 @@ public class FloodApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public okhttp3.Call thresholdThresholdGetBoundingBoxAsync(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, final ApiCallback<ThresholdResponseModel> _callback) throws ApiException {
-        return thresholdThresholdGetAsync(null, null, minLon, maxLon, minLat, maxLat, _callback);
+    public okhttp3.Call getThresholdBoundingBoxAsync(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, final ApiCallback<ThresholdResponseModel> _callback) throws ApiException {
+        return getThresholdAsync(null, null, minLon, maxLon, minLat, maxLat, _callback);
     }
 }

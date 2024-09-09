@@ -19,17 +19,12 @@ import io.openepi.common.ApiCallback;
 import io.openepi.common.ApiException;
 import io.openepi.common.ApiResponse;
 import io.openepi.common.Pair;
-import io.openepi.common.ProgressRequestBody;
-import io.openepi.common.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
 
 
 import java.math.BigDecimal;
 import io.openepi.geocoding.model.FeatureCollection;
-import io.openepi.geocoding.model.HTTPValidationError;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -183,7 +178,7 @@ public class GeocodingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public FeatureCollection geocodingGet(String q, BigDecimal lat, BigDecimal lon, String lang, Integer limit) throws ApiException {
+    public FeatureCollection getGeocoding(String q, BigDecimal lat, BigDecimal lon, String lang, Integer limit) throws ApiException {
         ApiResponse<FeatureCollection> localVarResp = geocodingGetWithHttpInfo(q, lat, lon, lang, limit);
         return localVarResp.getData();
     }
@@ -195,8 +190,8 @@ public class GeocodingApi {
      * @return FeatureCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public FeatureCollection geocodingGet(String q) throws ApiException {
-        return geocodingGet(q, null, null, null, null);
+    public FeatureCollection getGeocoding(String q) throws ApiException {
+        return getGeocoding(q, null, null, null, null);
     }
 
 
@@ -242,7 +237,7 @@ public class GeocodingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call geocodingGetAsync(String q, BigDecimal lat, BigDecimal lon, String lang, Integer limit, final ApiCallback<FeatureCollection> _callback) throws ApiException {
+    public okhttp3.Call getGeocodingAsync(String q, BigDecimal lat, BigDecimal lon, String lang, Integer limit, final ApiCallback<FeatureCollection> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = geocodingGetValidateBeforeCall(q, lat, lon, lang, limit, _callback);
         Type localVarReturnType = new TypeToken<FeatureCollection>(){}.getType();
@@ -257,8 +252,8 @@ public class GeocodingApi {
      * @return FeatureCollection
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public okhttp3.Call geocodingGetAsync(String q, final ApiCallback<FeatureCollection> _callback) throws ApiException {
-        return geocodingGetAsync(q, null, null, null, null, _callback);
+    public okhttp3.Call getGeocodingAsync(String q, final ApiCallback<FeatureCollection> _callback) throws ApiException {
+        return getGeocodingAsync(q, null, null, null, null, _callback);
     }
 
 
@@ -370,7 +365,7 @@ public class GeocodingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public FeatureCollection reverseGeocodingReverseGet(BigDecimal lat, BigDecimal lon, String lang, Integer limit) throws ApiException {
+    public FeatureCollection getReverseGeocoding(BigDecimal lat, BigDecimal lon, String lang, Integer limit) throws ApiException {
         ApiResponse<FeatureCollection> localVarResp = reverseGeocodingReverseGetWithHttpInfo(lat, lon, lang, limit);
         return localVarResp.getData();
     }
@@ -415,7 +410,7 @@ public class GeocodingApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call reverseGeocodingReverseGetAsync(BigDecimal lat, BigDecimal lon, String lang, Integer limit, final ApiCallback<FeatureCollection> _callback) throws ApiException {
+    public okhttp3.Call getReverseGeocodingAsync(BigDecimal lat, BigDecimal lon, String lang, Integer limit, final ApiCallback<FeatureCollection> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = reverseGeocodingReverseGetValidateBeforeCall(lat, lon, lang, limit, _callback);
         Type localVarReturnType = new TypeToken<FeatureCollection>(){}.getType();

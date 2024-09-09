@@ -19,17 +19,12 @@ import io.openepi.common.ApiCallback;
 import io.openepi.common.ApiException;
 import io.openepi.common.ApiResponse;
 import io.openepi.common.Pair;
-import io.openepi.common.ProgressRequestBody;
-import io.openepi.common.ProgressResponseBody;
 
 import com.google.gson.reflect.TypeToken;
-
-import java.io.IOException;
 
 
 import java.math.BigDecimal;
 import io.openepi.deforestation.model.DeforestationBasinGeoJSON;
-import io.openepi.deforestation.model.HTTPValidationError;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -196,7 +191,7 @@ public class DeforestationApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public DeforestationBasinGeoJSON lossyearBasinGet(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal minLat, BigDecimal maxLon, BigDecimal maxLat, Integer startYear, Integer endYear) throws ApiException {
+    public DeforestationBasinGeoJSON getLossyearBasin(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal minLat, BigDecimal maxLon, BigDecimal maxLat, Integer startYear, Integer endYear) throws ApiException {
         ApiResponse<DeforestationBasinGeoJSON> localVarResp = lossyearBasinGetWithHttpInfo(lon, lat, minLon, minLat, maxLon, maxLat, startYear, endYear);
         return localVarResp.getData();
     }
@@ -209,8 +204,8 @@ public class DeforestationApi {
      * @return DeforestationBasinGeoJSON
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DeforestationBasinGeoJSON lossyearBasinGetSinglePoint(BigDecimal lon, BigDecimal lat) throws ApiException {
-        return lossyearBasinGet(lon, lat, null, null, null, null, null, null);
+    public DeforestationBasinGeoJSON getLossyearBasinSinglePoint(BigDecimal lon, BigDecimal lat) throws ApiException {
+        return getLossyearBasin(lon, lat, null, null, null, null, null, null);
     }
 
     /**
@@ -222,8 +217,8 @@ public class DeforestationApi {
      * @return DeforestationBasinGeoJSON
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DeforestationBasinGeoJSON lossyearBasinGetBoundingBox(BigDecimal minLon, BigDecimal minLat, BigDecimal maxLon, BigDecimal maxLat) throws ApiException {
-        return lossyearBasinGet(null, null, minLon, minLat, maxLon, maxLat, null, null);
+    public DeforestationBasinGeoJSON getLossyearBasinBoundingBox(BigDecimal minLon, BigDecimal minLat, BigDecimal maxLon, BigDecimal maxLat) throws ApiException {
+        return getLossyearBasin(null, null, minLon, minLat, maxLon, maxLat, null, null);
     }
 
     /**
@@ -273,7 +268,7 @@ public class DeforestationApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call lossyearBasinGetAsync(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal minLat, BigDecimal maxLon, BigDecimal maxLat, Integer startYear, Integer endYear, final ApiCallback<DeforestationBasinGeoJSON> _callback) throws ApiException {
+    public okhttp3.Call getLossyearBasinAsync(BigDecimal lon, BigDecimal lat, BigDecimal minLon, BigDecimal minLat, BigDecimal maxLon, BigDecimal maxLat, Integer startYear, Integer endYear, final ApiCallback<DeforestationBasinGeoJSON> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = lossyearBasinGetValidateBeforeCall(lon, lat, minLon, minLat, maxLon, maxLat, startYear, endYear, _callback);
         Type localVarReturnType = new TypeToken<DeforestationBasinGeoJSON>(){}.getType();
@@ -291,8 +286,8 @@ public class DeforestationApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public okhttp3.Call lossyearBasinGetSinglePointAsync(BigDecimal lon, BigDecimal lat, final ApiCallback<DeforestationBasinGeoJSON> _callback) throws ApiException {
-        return lossyearBasinGetAsync(lon, lat, null, null, null, null, null, null, _callback);
+    public okhttp3.Call getLossyearBasinSinglePointAsync(BigDecimal lon, BigDecimal lat, final ApiCallback<DeforestationBasinGeoJSON> _callback) throws ApiException {
+        return getLossyearBasinAsync(lon, lat, null, null, null, null, null, null, _callback);
     }
 
     /**
@@ -306,7 +301,7 @@ public class DeforestationApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public okhttp3.Call lossyearBasinGetBoundingBoxAsync(BigDecimal minLon, BigDecimal minLat, BigDecimal maxLon, BigDecimal maxLat, final ApiCallback<DeforestationBasinGeoJSON> _callback) throws ApiException {
-        return lossyearBasinGetAsync(null, null, minLon, minLat, maxLon, maxLat, null, null, _callback);
+    public okhttp3.Call getLossyearBasinBoundingBoxAsync(BigDecimal minLon, BigDecimal minLat, BigDecimal maxLon, BigDecimal maxLat, final ApiCallback<DeforestationBasinGeoJSON> _callback) throws ApiException {
+        return getLossyearBasinAsync(null, null, minLon, minLat, maxLon, maxLat, null, null, _callback);
     }
 }

@@ -28,7 +28,7 @@ public class FloodApiTest {
     }
 
     @Test
-    public void detailedDetailedGetTest() throws ApiException {
+    public void getDetailedForecastTest() throws ApiException {
         BigDecimal lon = new BigDecimal("33.57");
         BigDecimal lat = BigDecimal.valueOf(-1.37);
         Boolean includeNeighbors = false;
@@ -45,19 +45,19 @@ public class FloodApiTest {
         mockFeatureCollection.addFeaturesItem(mockFeature);
         mockResponse.setQueriedLocation(mockFeatureCollection);
 
-        when(api.detailedDetailedGet(lon, lat, null, null, null, null, includeNeighbors, null, null)).thenReturn(mockResponse);
-        when(api.detailedDetailedGet(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, null, null)).thenReturn(mockResponse);
+        when(api.getDetailedForecast(lon, lat, null, null, null, null, includeNeighbors, null, null)).thenReturn(mockResponse);
+        when(api.getDetailedForecast(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, null, null)).thenReturn(mockResponse);
 
-        DetailedResponseModel response = api.detailedDetailedGet(lon, lat, null, null, null, null, includeNeighbors, null, null);
+        DetailedResponseModel response = api.getDetailedForecast(lon, lat, null, null, null, null, includeNeighbors, null, null);
         assertEquals("123", response.getQueriedLocation().getFeatures().get(0).getId());
 
-        response = api.detailedDetailedGet(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, null, null);
+        response = api.getDetailedForecast(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors, null, null);
         assertEquals("123", response.getQueriedLocation().getFeatures().get(0).getId());
     }
 
 
     @Test
-    public void summarySummaryGetTest() throws ApiException {
+    public void getForecastSummaryTest() throws ApiException {
         BigDecimal lon = new BigDecimal("33.57");
         BigDecimal lat = BigDecimal.valueOf(-1.37);
         Boolean includeNeighbors = false;
@@ -74,18 +74,18 @@ public class FloodApiTest {
         mockFeatureCollection.addFeaturesItem(mockFeature);
         mockResponse.setQueriedLocation(mockFeatureCollection);
 
-        when(api.summarySummaryGet(lon, lat, null, null, null, null, includeNeighbors)).thenReturn(mockResponse);
-        when(api.summarySummaryGet(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors)).thenReturn(mockResponse);
+        when(api.getForecastSummary(lon, lat, null, null, null, null, includeNeighbors)).thenReturn(mockResponse);
+        when(api.getForecastSummary(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors)).thenReturn(mockResponse);
 
-        SummaryResponseModel response = api.summarySummaryGet(lon, lat, null, null, null, null, includeNeighbors);
+        SummaryResponseModel response = api.getForecastSummary(lon, lat, null, null, null, null, includeNeighbors);
         assertEquals("123", response.getQueriedLocation().getFeatures().get(0).getId());
 
-        response = api.summarySummaryGet(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors);
+        response = api.getForecastSummary(null, null, minLon, maxLon, minLat, maxLat, includeNeighbors);
         assertEquals("123", response.getQueriedLocation().getFeatures().get(0).getId());
     }
 
     @Test
-    public void thresholdThresholdGetTest() throws ApiException {
+    public void getThresholdTest() throws ApiException {
         BigDecimal lon = new BigDecimal("33.57");
         BigDecimal lat = BigDecimal.valueOf(-1.37);
 
@@ -101,13 +101,13 @@ public class FloodApiTest {
         mockFeatureCollection.addFeaturesItem(mockFeature);
         mockResponse.setQueriedLocation(mockFeatureCollection);
 
-        when(api.thresholdThresholdGet(lon, lat, null, null, null, null)).thenReturn(mockResponse);
-        when(api.thresholdThresholdGet(null, null, minLon, maxLon, minLat, maxLat)).thenReturn(mockResponse);
+        when(api.getThreshold(lon, lat, null, null, null, null)).thenReturn(mockResponse);
+        when(api.getThreshold(null, null, minLon, maxLon, minLat, maxLat)).thenReturn(mockResponse);
 
-        ThresholdResponseModel response = api.thresholdThresholdGet(lon, lat, null, null, null, null);
+        ThresholdResponseModel response = api.getThreshold(lon, lat, null, null, null, null);
         assertEquals("123", response.getQueriedLocation().getFeatures().get(0).getId());
 
-        response = api.thresholdThresholdGet(null, null, minLon, maxLon, minLat, maxLat);
+        response = api.getThreshold(null, null, minLon, maxLon, minLat, maxLat);
         assertEquals("123", response.getQueriedLocation().getFeatures().get(0).getId());
     }
 
