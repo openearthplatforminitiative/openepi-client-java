@@ -204,7 +204,7 @@ public class SoilApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public SoilPropertyJSON getSoilPropertyPropertyGet(BigDecimal lon, BigDecimal lat, List<SoilDepthLabels> depths, List<SoilPropertiesCodes> properties, List<SoilPropertyValueTypes> values) throws ApiException {
+    public SoilPropertyJSON getSoilProperty(BigDecimal lon, BigDecimal lat, List<SoilDepthLabels> depths, List<SoilPropertiesCodes> properties, List<SoilPropertyValueTypes> values) throws ApiException {
         ApiResponse<SoilPropertyJSON> localVarResp = getSoilPropertyPropertyGetWithHttpInfo(lon, lat, depths, properties, values);
         return localVarResp.getData();
     }
@@ -250,7 +250,7 @@ public class SoilApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSoilPropertyPropertyGetAsync(BigDecimal lon, BigDecimal lat, List<SoilDepthLabels> depths, List<SoilPropertiesCodes> properties, List<SoilPropertyValueTypes> values, final ApiCallback<SoilPropertyJSON> _callback) throws ApiException {
+    public okhttp3.Call getSoilPropertyAsync(BigDecimal lon, BigDecimal lat, List<SoilDepthLabels> depths, List<SoilPropertiesCodes> properties, List<SoilPropertyValueTypes> values, final ApiCallback<SoilPropertyJSON> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getSoilPropertyPropertyGetValidateBeforeCall(lon, lat, depths, properties, values, _callback);
         Type localVarReturnType = new TypeToken<SoilPropertyJSON>(){}.getType();
@@ -361,7 +361,7 @@ public class SoilApi {
 
     /**
      * Get soil type summary
-     * Returns the a summary of the soil types present in the given bounding box, represented by a mapping of each soil type to the number of occurrences in the bounding box
+     * Returns the summary of the soil types present in the given bounding box, represented by a mapping of each soil type to the number of occurrences in the bounding box
      * @param minLon Minimum longitude (required)
      * @param maxLon Maximum longitude (required)
      * @param minLat Minimum latitude (required)
@@ -375,14 +375,14 @@ public class SoilApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public SoilTypeSummaryJSON getSoilTypeSummaryTypeSummaryGet(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat) throws ApiException {
+    public SoilTypeSummaryJSON getSoilTypeSummary(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat) throws ApiException {
         ApiResponse<SoilTypeSummaryJSON> localVarResp = getSoilTypeSummaryTypeSummaryGetWithHttpInfo(minLon, maxLon, minLat, maxLat);
         return localVarResp.getData();
     }
 
     /**
      * Get soil type summary
-     * Returns the a summary of the soil types present in the given bounding box, represented by a mapping of each soil type to the number of occurrences in the bounding box
+     * Returns the summary of the soil types present in the given bounding box, represented by a mapping of each soil type to the number of occurrences in the bounding box
      * @param minLon Minimum longitude (required)
      * @param maxLon Maximum longitude (required)
      * @param minLat Minimum latitude (required)
@@ -404,7 +404,7 @@ public class SoilApi {
 
     /**
      * Get soil type summary (asynchronously)
-     * Returns the a summary of the soil types present in the given bounding box, represented by a mapping of each soil type to the number of occurrences in the bounding box
+     * Returns the summary of the soil types present in the given bounding box, represented by a mapping of each soil type to the number of occurrences in the bounding box
      * @param minLon Minimum longitude (required)
      * @param maxLon Maximum longitude (required)
      * @param minLat Minimum latitude (required)
@@ -419,7 +419,7 @@ public class SoilApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSoilTypeSummaryTypeSummaryGetAsync(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, final ApiCallback<SoilTypeSummaryJSON> _callback) throws ApiException {
+    public okhttp3.Call getSoilTypeSummaryAsync(BigDecimal minLon, BigDecimal maxLon, BigDecimal minLat, BigDecimal maxLat, final ApiCallback<SoilTypeSummaryJSON> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getSoilTypeSummaryTypeSummaryGetValidateBeforeCall(minLon, maxLon, minLat, maxLat, _callback);
         Type localVarReturnType = new TypeToken<SoilTypeSummaryJSON>(){}.getType();
@@ -528,7 +528,7 @@ public class SoilApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public SoilTypeJSON getSoilTypeTypeGet(BigDecimal lon, BigDecimal lat, Integer topK) throws ApiException {
+    public SoilTypeJSON getSoilType(BigDecimal lon, BigDecimal lat, Integer topK) throws ApiException {
         ApiResponse<SoilTypeJSON> localVarResp = getSoilTypeTypeGetWithHttpInfo(lon, lat, topK);
         return localVarResp.getData();
     }
@@ -570,7 +570,7 @@ public class SoilApi {
         <tr><td> 422 </td><td> Validation Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getSoilTypeTypeGetAsync(BigDecimal lon, BigDecimal lat, Integer topK, final ApiCallback<SoilTypeJSON> _callback) throws ApiException {
+    public okhttp3.Call getSoilTypeAsync(BigDecimal lon, BigDecimal lat, Integer topK, final ApiCallback<SoilTypeJSON> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = getSoilTypeTypeGetValidateBeforeCall(lon, lat, topK, _callback);
         Type localVarReturnType = new TypeToken<SoilTypeJSON>(){}.getType();
