@@ -1,0 +1,20 @@
+{
+  "name": "openepi-client-java",
+  "version": "1.0.0",
+  "description": "A java client for accessing data from OpenEPI.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^10.1.7",
+    "semantic-release": "^24.1.0",
+    "semantic-release-maven": "^1.1.8"
+  }
+}
