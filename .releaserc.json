@@ -4,14 +4,8 @@
     "@semantic-release/commit-analyzer",
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
-    [
-      "@semantic-release/exec",
-      {
-        "verifyReleaseCmd": "./mvnw versions:set -DnewVersion=${nextRelease.version} && ./mvnw versions:commit",
-        "prepareCmd": "./mvnw clean package"
-      }
-    ],
     "@semantic-release/git",
-    "@semantic-release/github"
+    "@semantic-release/github",
+    "semantic-release-maven"
   ]
 }
