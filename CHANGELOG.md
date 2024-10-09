@@ -1,3 +1,11 @@
+## [1.0.1](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.0...v1.0.1) (2024-10-09)
+
+
+### Bug Fixes
+
+* add setup of settings.xml ([279a24a](https://github.com/openearthplatforminitiative/openepi-client-java/commit/279a24af84af08a62d508f20f5fcd3cf18759805))
+* change to use environment variables directly ([78ac688](https://github.com/openearthplatforminitiative/openepi-client-java/commit/78ac688c0fb469f7c2450644c4f183977a8a7d32))
+
 # 1.0.0 (2024-10-09)
 
 
