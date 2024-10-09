@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.2...v1.0.3) (2024-10-09)
+
+
+### Bug Fixes
+
+* update central-publishing-maven-plugin ([5d20ea9](https://github.com/openearthplatforminitiative/openepi-client-java/commit/5d20ea9403788e2684bec9ccffd9bb4b9c1cba0c))
+
 ## [1.0.2](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.1...v1.0.2) (2024-10-09)
 
 
