@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.1...v1.0.2) (2024-10-09)
+
+
+### Bug Fixes
+
+* set publishingServerId to ossrh ([8f476ec](https://github.com/openearthplatforminitiative/openepi-client-java/commit/8f476ec915fc7d009ffd29291c731a52bd0eeef8))
+
 ## [1.0.1](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.0...v1.0.1) (2024-10-09)
 
 
