@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.3...v1.0.4) (2024-10-09)
+
+
+### Bug Fixes
+
+* remove unused workflow ([efb6f5d](https://github.com/openearthplatforminitiative/openepi-client-java/commit/efb6f5d2372ff2ea346063b932348a976a55b82e))
+
 ## [1.0.3](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.2...v1.0.3) (2024-10-09)
 
 
