@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.4...v1.0.5) (2024-11-19)
+
+
+### Bug Fixes
+
+* Give more sensible names to most public methods for all apis ([cab7ae1](https://github.com/openearthplatforminitiative/openepi-client-java/commit/cab7ae140f024e2c754fc1c0adbe6545a76409b0))
+
 ## [1.0.4](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.3...v1.0.4) (2024-10-09)
 
 
