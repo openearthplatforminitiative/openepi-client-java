@@ -28,7 +28,7 @@ public class GeocodingApiTest {
     }
 
     @Test
-    public void geocodingGetTest() throws ApiException {
+    public void getGeocodingTest() throws ApiException {
         String q = "Kigali, Rwanda";
 
         FeatureCollection mockResponse = new FeatureCollection();
@@ -41,14 +41,14 @@ public class GeocodingApiTest {
         List<Feature> mockFeatures = Arrays.asList(mockFeature);
         mockResponse.setFeatures(mockFeatures);
 
-        when(api.geocodingGet(q, null, null, null, null)).thenReturn(mockResponse);
+        when(api.getGeocoding(q, null, null, null, null)).thenReturn(mockResponse);
 
-        FeatureCollection response = api.geocodingGet(q, null, null, null, null);
+        FeatureCollection response = api.getGeocoding(q, null, null, null, null);
         assertEquals(Arrays.asList("-1.97", "30.10"), response.getFeatures().get(0).getGeometry().getPoint().getCoordinates());
     }
 
     @Test
-    public void reverseGeocodingReverseGetTest() throws ApiException {
+    public void getReverseGeocodingTest() throws ApiException {
         BigDecimal lat = new BigDecimal("-1.97");
         BigDecimal lon = new BigDecimal("30.10");
 
@@ -60,9 +60,9 @@ public class GeocodingApiTest {
         List<Feature> mockFeatures = Arrays.asList(mockFeature);
         mockResponse.setFeatures(mockFeatures);
 
-        when(api.reverseGeocodingReverseGet(lat, lon, null, null)).thenReturn(mockResponse);
+        when(api.getReverseGeocoding(lat, lon, null, null)).thenReturn(mockResponse);
 
-        FeatureCollection response = api.reverseGeocodingReverseGet(lat, lon, null, null);
+        FeatureCollection response = api.getReverseGeocoding(lat, lon, null, null);
         assertEquals("RW", response.getFeatures().get(0).getProperties().getCountrycode());
     }
 

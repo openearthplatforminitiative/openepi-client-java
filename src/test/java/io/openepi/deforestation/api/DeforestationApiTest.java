@@ -30,7 +30,7 @@ public class DeforestationApiTest {
     }
 
     @Test
-    public void lossyearBasinGetTest() throws ApiException {
+    public void getLossyearBasinTest() throws ApiException {
         BigDecimal lon = new BigDecimal("30.06");
         BigDecimal lat = BigDecimal.valueOf(-1.94);
         BigDecimal minLon = new BigDecimal("28.85");
@@ -49,13 +49,13 @@ public class DeforestationApiTest {
         features.add(mockFeature);
         mockResponse.setFeatures(features);
 
-        when(api.lossyearBasinGet(lon, lat, null, null, null, null, null, null)).thenReturn(mockResponse);
-        when(api.lossyearBasinGet(null, null, minLon, minLat, maxLon, maxLat, null, null)).thenReturn(mockResponse);
+        when(api.getLossyearBasin(lon, lat, null, null, null, null, null, null)).thenReturn(mockResponse);
+        when(api.getLossyearBasin(null, null, minLon, minLat, maxLon, maxLat, null, null)).thenReturn(mockResponse);
 
-        DeforestationBasinGeoJSON response = api.lossyearBasinGet(lon, lat, null, null, null, null, null, null);
+        DeforestationBasinGeoJSON response = api.getLossyearBasin(lon, lat, null, null, null, null, null, null);
         assertEquals(response.getFeatures().get(0).getProperties().getStartYear(), 2001);
 
-        response = api.lossyearBasinGet(null, null, minLon, minLat, maxLon, maxLat, null, null);
+        response = api.getLossyearBasin(null, null, minLon, minLat, maxLon, maxLat, null, null);
         assertEquals(2001, response.getFeatures().get(0).getProperties().getStartYear());
     }
 

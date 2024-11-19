@@ -43,38 +43,38 @@ public class CropHealthApiTest {
     }
 
     @Test
-    public void predictionsWithBinaryTest() throws ApiException {
+    public void postPredictionBinaryTest() throws ApiException {
         BinaryPredictionResponse mockResponse = new BinaryPredictionResponse();
         mockResponse.setHLT(new BigDecimal("0.5"));
         File body = mock(File.class);
-        when(api.predictionsWithBinary(body)).thenReturn(mockResponse);
+        when(api.postPredictionBinary(body)).thenReturn(mockResponse);
 
-        BinaryPredictionResponse response = api.predictionsWithBinary(body);
+        BinaryPredictionResponse response = api.postPredictionBinary(body);
         assertEquals(new BigDecimal("0.5"), response.getHLT());
     }
 
     @Test
-    public void predictionsWithMultiHLTTest() throws ApiException {
+    public void postPredictionMultiTest() throws ApiException {
         MultiHLTPredictionResponse mockResponse = new MultiHLTPredictionResponse();
         mockResponse.setAlSBeans(new BigDecimal("0.5"));
         mockResponse.setAnTCocoa(new BigDecimal("0.5"));
         File body = mock(File.class);
-        when(api.predictionsWithMultiHLT(body)).thenReturn(mockResponse);
+        when(api.postPredictionMulti(body)).thenReturn(mockResponse);
 
-        MultiHLTPredictionResponse response = api.predictionsWithMultiHLT(body);
+        MultiHLTPredictionResponse response = api.postPredictionMulti(body);
         assertEquals(new BigDecimal("0.5"), response.getAlSBeans());
         assertEquals(new BigDecimal("0.5"), response.getAnTCocoa());
     }
 
     @Test
-    public void predictionsWithSingleHLTTest() throws ApiException {
+    public void postPredictionSingleTest() throws ApiException {
         SingleHLTPredictionResponse mockResponse = new SingleHLTPredictionResponse();
         mockResponse.setHLT(new BigDecimal("0.5"));
         mockResponse.setALS(new BigDecimal("0.5"));
         File body = mock(File.class);
-        when(api.predictionsWithSingleHLT(body)).thenReturn(mockResponse);
+        when(api.postPredictionSingle(body)).thenReturn(mockResponse);
 
-        SingleHLTPredictionResponse response = api.predictionsWithSingleHLT(body);
+        SingleHLTPredictionResponse response = api.postPredictionSingle(body);
         assertEquals(new BigDecimal("0.5"), response.getHLT());
         assertEquals(new BigDecimal("0.5"), response.getALS());
     }

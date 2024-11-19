@@ -25,7 +25,7 @@ public class WeatherApiTest {
     }
 
     @Test
-    public void getForecastLocationforecastGetTest() throws ApiException {
+    public void getLocationForecastTest() throws ApiException {
         BigDecimal lat = new BigDecimal("52.52");
         BigDecimal lon = new BigDecimal("13.40");
 
@@ -42,15 +42,15 @@ public class WeatherApiTest {
         forecast.addTimeseriesItem(forecastTimeStep);
         mockResponse.setProperties(forecast);
 
-        when(api.getForecastLocationforecastGet(lat, lon, null)).thenReturn(mockResponse);
+        when(api.getLocationForecast(lat, lon, null)).thenReturn(mockResponse);
 
-        METJSONForecast response = api.getForecastLocationforecastGet(lat, lon, null);
+        METJSONForecast response = api.getLocationForecast(lat, lon, null);
         assertEquals(new BigDecimal("10"), response.getProperties().getTimeseries().get(0).getData().getInstant().getDetails().getAirPressureAtSeaLevel());
 
     }
 
     @Test
-    public void getSunriseSunriseGetTest() throws ApiException {
+    public void getSunriseAndSunsetTest() throws ApiException {
         BigDecimal lat = new BigDecimal("52.52");
         BigDecimal lon = new BigDecimal("13.40");
 
@@ -61,9 +61,9 @@ public class WeatherApiTest {
         forecast.setSunrise(mockTime);
         mockResponse.setProperties(forecast);
 
-        when(api.getSunriseSunriseGet(lat, lon, null)).thenReturn(mockResponse);
+        when(api.getSunriseAndSunset(lat, lon, null)).thenReturn(mockResponse);
 
-        METJSONSunrise response = api.getSunriseSunriseGet(lat, lon, null);
+        METJSONSunrise response = api.getSunriseAndSunset(lat, lon, null);
         assertEquals("20:24", response.getProperties().getSunrise().getTime());
     }
 
