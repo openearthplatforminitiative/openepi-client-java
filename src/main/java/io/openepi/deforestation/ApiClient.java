@@ -62,10 +62,10 @@ import io.openepi.common.*;
  */
 public class ApiClient {
 
-    private String basePath = "https://api-test.openepi.io/deforestation";
+    private String basePath = "https://api.openepi.io/deforestation";
     protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
     new ServerConfiguration(
-      "https://api-test.openepi.io/deforestation",
+      "https://api.openepi.io/deforestation",
       "No description provided",
       new HashMap<String, ServerVariable>()
     )
@@ -157,7 +157,7 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g https://api-test.openepi.io/deforestation
+     * @param basePath Base path of the URL (e.g https://api.openepi.io/deforestation
      * @return An instance of OkHttpClient
      */
     public ApiClient setBasePath(String basePath) {
