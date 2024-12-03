@@ -30,6 +30,31 @@ Works on Java 8 (and higher)
 
 ## Examples
 
+### Agriculture
+```java
+import io.openepi.common.ApiException;
+import io.openepi.agriculture.api.Agriculture;
+import io.openepi.agriculture.model.ModelsSummmary;
+
+import java.math.BigDecimal;
+
+
+public class Main {
+    public static void main(String[] args) {
+        Agriculture api = new AgricultureApi();
+        try {
+            BigDecimal lon = new BigDecimal("30.06");
+            BigDecimal lat = BigDecimal.valueOf(-1.94);
+            ModelsSummary response = api.getSummary(lon, lat);
+            System.out.println(response);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AgricultureApi#getSummary");
+            e.printStackTrace();
+        }
+    }
+}
+```
+
 ### Crop Health
 ```java
 import io.openepi.client.CropHealthApi;
@@ -188,11 +213,12 @@ The generator generates a lot of the same code for each API. This library theref
 
 Generation should be done in a separate folder, and files that are relevant should be copied into this project:
 ```bash
-openapi-generator generate -i https://api.openepi.io/crop-health/openapi.json -g java -o ./crop-health
-openapi-generator generate -i https://api.openepi.io/deforestation/openapi.json -g java -o ./deforestation
-openapi-generator generate -i https://api.openepi.io/flood/openapi.json -g java -o ./flood
-openapi-generator generate -i https://api.openepi.io/soil/openapi.json -g java -o ./soil
-openapi-generator generate -i https://api.openepi.io/weather/openapi.json -g java -o ./weather
+openapi-generator generate -i https://api-test.openepi.io/agriculture/openapi.json -g java -o ./agriculture
+openapi-generator generate -i https://api-test.openepi.io/crop-health/openapi.json -g java -o ./crop-health
+openapi-generator generate -i https://api-test.openepi.io/deforestation/openapi.json -g java -o ./deforestation
+openapi-generator generate -i https://api-test.openepi.io/flood/openapi.json -g java -o ./flood
+openapi-generator generate -i https://api-test.openepi.io/soil/openapi.json -g java -o ./soil
+openapi-generator generate -i https://api-test.openepi.io/weather/openapi.json -g java -o ./weather
 ```
 
 There is a special case for the geocoding api. When the api generates its openapi spec, it generates with `anyOf` and 
