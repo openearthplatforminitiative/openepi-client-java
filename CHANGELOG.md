@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.5...v1.0.6) (2024-12-05)
+
+
+### Bug Fixes
+
+* change links to prod ([381eec9](https://github.com/openearthplatforminitiative/openepi-client-java/commit/381eec9887f94df0d54cda642ddd8a778ce8e35c))
+
 ## [1.0.5](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.4...v1.0.5) (2024-11-19)
 
 
