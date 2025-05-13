@@ -153,6 +153,7 @@ public class Main {
 
 ### Weather
 
+#### Forecast
 ```java
 import io.openepi.weather.api.WeatherApi;
 import io.openepi.weather.model.METJSONForecast;
@@ -175,9 +176,34 @@ public class Main {
         }
     }
 }
-
 ```
 
+#### Sunrise and sunset
+
+```java
+import io.openepi.weather.api.WeatherApi;
+import io.openepi.weather.model.METJSONForecast;
+import io.openepi.common.ApiException;
+
+import java.math.BigDecimal;
+
+public class Main {
+    public static void main(String[] args) {
+        BigDecimal lat = new BigDecimal("52.52");
+        BigDecimal lon = new BigDecimal("13.40");
+
+        WeatherApi api = new WeatherApi();
+        try {
+            METJSONSunrise response = api.getSunriseAndSunset(lat, lon, null);
+            System.out.println(response.getProperties().getSunrise().getTime());
+            System.out.println(response.getProperties().getSunset().getTime());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WeatherApi#getSunriseAndSunset");
+            e.printStackTrace();
+        }
+    }
+}
+```
 
 
 ## Generation
