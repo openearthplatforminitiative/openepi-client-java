@@ -182,7 +182,7 @@ public class Main {
 
 ```java
 import io.openepi.weather.api.WeatherApi;
-import io.openepi.weather.model.METJSONForecast;
+import io.openepi.weather.model.METJSONSunrise;
 import io.openepi.common.ApiException;
 
 import java.math.BigDecimal;
