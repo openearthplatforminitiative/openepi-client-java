@@ -212,13 +212,14 @@ Most of this library is generated using `openapi-generator`: https://github.com/
 The generator generates a lot of the same code for each API. This library therefore transfers the repeating code to the
 `common` package.
 
-Generation should be done in a separate folder, and files that are relevant should be copied into this project:
+Generation should be done in a separate folder, and files that are relevant should be copied and adapted into this project:
 ```bash
 openapi-generator generate -i https://api.openepi.io/crop-health/openapi.json -g java -o ./crop-health
 openapi-generator generate -i https://api.openepi.io/deforestation/openapi.json -g java -o ./deforestation
 openapi-generator generate -i https://api.openepi.io/flood/openapi.json -g java -o ./flood
 openapi-generator generate -i https://api.openepi.io/soil/openapi.json -g java -o ./soil
-openapi-generator generate -i https://api.openepi.io/weather/openapi.json -g java -o ./weather
+openapi-generator generate -i https://api.met.no/weatherapi/locationforecast/2.0/swagger -g java -o ./weather
+openapi-generator generate -i https://api.met.no/weatherapi/sunrise/3.0/swagger -g java -o ./sunrise
 ```
 
 There is a special case for the geocoding api. When the api generates its openapi spec, it generates with `anyOf` and 

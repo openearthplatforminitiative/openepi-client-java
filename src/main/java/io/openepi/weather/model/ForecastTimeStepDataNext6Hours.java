@@ -21,7 +21,8 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 import java.util.Arrays;
-import io.openepi.weather.model.ForecastTimeStepData;
+import io.openepi.weather.model.ForecastSummary;
+import io.openepi.weather.model.ForecastTimePeriod;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -47,58 +48,58 @@ import java.util.Set;
 import io.openepi.weather.JSON;
 
 /**
- * ForecastTimeStep
+ * Parameters with validity times over six hours. Will not exist for all time steps.
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-12T08:53:23.751911+02:00[Europe/Oslo]", comments = "Generator version: 7.13.0")
-public class ForecastTimeStep {
-  public static final String SERIALIZED_NAME_DATA = "data";
-  @SerializedName(SERIALIZED_NAME_DATA)
+public class ForecastTimeStepDataNext6Hours {
+  public static final String SERIALIZED_NAME_DETAILS = "details";
+  @SerializedName(SERIALIZED_NAME_DETAILS)
   @javax.annotation.Nonnull
-  private ForecastTimeStepData data;
+  private ForecastTimePeriod details;
 
-  public static final String SERIALIZED_NAME_TIME = "time";
-  @SerializedName(SERIALIZED_NAME_TIME)
+  public static final String SERIALIZED_NAME_SUMMARY = "summary";
+  @SerializedName(SERIALIZED_NAME_SUMMARY)
   @javax.annotation.Nonnull
-  private String time;
+  private ForecastSummary summary;
 
-  public ForecastTimeStep() {
+  public ForecastTimeStepDataNext6Hours() {
   }
 
-  public ForecastTimeStep data(@javax.annotation.Nonnull ForecastTimeStepData data) {
-    this.data = data;
+  public ForecastTimeStepDataNext6Hours details(@javax.annotation.Nonnull ForecastTimePeriod details) {
+    this.details = details;
     return this;
   }
 
   /**
-   * Get data
-   * @return data
+   * Get details
+   * @return details
    */
   @javax.annotation.Nonnull
-  public ForecastTimeStepData getData() {
-    return data;
+  public ForecastTimePeriod getDetails() {
+    return details;
   }
 
-  public void setData(@javax.annotation.Nonnull ForecastTimeStepData data) {
-    this.data = data;
+  public void setDetails(@javax.annotation.Nonnull ForecastTimePeriod details) {
+    this.details = details;
   }
 
 
-  public ForecastTimeStep time(@javax.annotation.Nonnull String time) {
-    this.time = time;
+  public ForecastTimeStepDataNext6Hours summary(@javax.annotation.Nonnull ForecastSummary summary) {
+    this.summary = summary;
     return this;
   }
 
   /**
-   * The time these forecast values are valid for. Timestamp in format YYYY-MM-DDThh:mm:ssZ (ISO 8601)
-   * @return time
+   * Get summary
+   * @return summary
    */
   @javax.annotation.Nonnull
-  public String getTime() {
-    return time;
+  public ForecastSummary getSummary() {
+    return summary;
   }
 
-  public void setTime(@javax.annotation.Nonnull String time) {
-    this.time = time;
+  public void setSummary(@javax.annotation.Nonnull ForecastSummary summary) {
+    this.summary = summary;
   }
 
 
@@ -111,22 +112,22 @@ public class ForecastTimeStep {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ForecastTimeStep forecastTimeStep = (ForecastTimeStep) o;
-    return Objects.equals(this.data, forecastTimeStep.data) &&
-        Objects.equals(this.time, forecastTimeStep.time);
+    ForecastTimeStepDataNext6Hours forecastTimeStepDataNext6Hours = (ForecastTimeStepDataNext6Hours) o;
+    return Objects.equals(this.details, forecastTimeStepDataNext6Hours.details) &&
+        Objects.equals(this.summary, forecastTimeStepDataNext6Hours.summary);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, time);
+    return Objects.hash(details, summary);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ForecastTimeStep {\n");
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    time: ").append(toIndentedString(time)).append("\n");
+    sb.append("class ForecastTimeStepDataNext6Hours {\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -149,70 +150,69 @@ public class ForecastTimeStep {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("data");
-    openapiFields.add("time");
+    openapiFields.add("details");
+    openapiFields.add("summary");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
-    openapiRequiredFields.add("data");
-    openapiRequiredFields.add("time");
+    openapiRequiredFields.add("details");
+    openapiRequiredFields.add("summary");
   }
 
   /**
    * Validates the JSON Element and throws an exception if issues found
    *
    * @param jsonElement JSON Element
-   * @throws IOException if the JSON Element is invalid with respect to ForecastTimeStep
+   * @throws IOException if the JSON Element is invalid with respect to ForecastTimeStepDataNext6Hours
    */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
-        if (!ForecastTimeStep.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
-          throw new IllegalArgumentException(String.format("The required field(s) %s in ForecastTimeStep is not found in the empty JSON string", ForecastTimeStep.openapiRequiredFields.toString()));
+        if (!ForecastTimeStepDataNext6Hours.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
+          throw new IllegalArgumentException(String.format("The required field(s) %s in ForecastTimeStepDataNext6Hours is not found in the empty JSON string", ForecastTimeStepDataNext6Hours.openapiRequiredFields.toString()));
         }
       }
 
       Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
       // check to see if the JSON string contains additional fields
       for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ForecastTimeStep.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ForecastTimeStep` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
+        if (!ForecastTimeStepDataNext6Hours.openapiFields.contains(entry.getKey())) {
+          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ForecastTimeStepDataNext6Hours` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
 
       // check to make sure all required properties/fields are present in the JSON string
-      for (String requiredField : ForecastTimeStep.openapiRequiredFields) {
+      for (String requiredField : ForecastTimeStepDataNext6Hours.openapiRequiredFields) {
         if (jsonElement.getAsJsonObject().get(requiredField) == null) {
           throw new IllegalArgumentException(String.format("The required field `%s` is not found in the JSON string: %s", requiredField, jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
-      // validate the required field `data`
-      ForecastTimeStepData.validateJsonElement(jsonObj.get("data"));
-      if (!jsonObj.get("time").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `time` to be a primitive type in the JSON string but got `%s`", jsonObj.get("time").toString()));
-      }
+      // validate the required field `details`
+      ForecastTimePeriod.validateJsonElement(jsonObj.get("details"));
+      // validate the required field `summary`
+      ForecastSummary.validateJsonElement(jsonObj.get("summary"));
   }
 
   public static class CustomTypeAdapterFactory implements TypeAdapterFactory {
     @SuppressWarnings("unchecked")
     @Override
     public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {
-       if (!ForecastTimeStep.class.isAssignableFrom(type.getRawType())) {
-         return null; // this class only serializes 'ForecastTimeStep' and its subtypes
+       if (!ForecastTimeStepDataNext6Hours.class.isAssignableFrom(type.getRawType())) {
+         return null; // this class only serializes 'ForecastTimeStepDataNext6Hours' and its subtypes
        }
        final TypeAdapter<JsonElement> elementAdapter = gson.getAdapter(JsonElement.class);
-       final TypeAdapter<ForecastTimeStep> thisAdapter
-                        = gson.getDelegateAdapter(this, TypeToken.get(ForecastTimeStep.class));
+       final TypeAdapter<ForecastTimeStepDataNext6Hours> thisAdapter
+                        = gson.getDelegateAdapter(this, TypeToken.get(ForecastTimeStepDataNext6Hours.class));
 
-       return (TypeAdapter<T>) new TypeAdapter<ForecastTimeStep>() {
+       return (TypeAdapter<T>) new TypeAdapter<ForecastTimeStepDataNext6Hours>() {
            @Override
-           public void write(JsonWriter out, ForecastTimeStep value) throws IOException {
+           public void write(JsonWriter out, ForecastTimeStepDataNext6Hours value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
              elementAdapter.write(out, obj);
            }
 
            @Override
-           public ForecastTimeStep read(JsonReader in) throws IOException {
+           public ForecastTimeStepDataNext6Hours read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
              return thisAdapter.fromJsonTree(jsonElement);
@@ -223,18 +223,18 @@ public class ForecastTimeStep {
   }
 
   /**
-   * Create an instance of ForecastTimeStep given an JSON string
+   * Create an instance of ForecastTimeStepDataNext6Hours given an JSON string
    *
    * @param jsonString JSON string
-   * @return An instance of ForecastTimeStep
-   * @throws IOException if the JSON string is invalid with respect to ForecastTimeStep
+   * @return An instance of ForecastTimeStepDataNext6Hours
+   * @throws IOException if the JSON string is invalid with respect to ForecastTimeStepDataNext6Hours
    */
-  public static ForecastTimeStep fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ForecastTimeStep.class);
+  public static ForecastTimeStepDataNext6Hours fromJson(String jsonString) throws IOException {
+    return JSON.getGson().fromJson(jsonString, ForecastTimeStepDataNext6Hours.class);
   }
 
   /**
-   * Convert an instance of ForecastTimeStep to an JSON string
+   * Convert an instance of ForecastTimeStepDataNext6Hours to an JSON string
    *
    * @return JSON string
    */
