@@ -36,6 +36,7 @@ public class WeatherApi {
     private WeatherClient localVarWeatherClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
+    private Map<String, String> localVarHeaderParams;
 
     public WeatherApi() {
         this(WeatherConfiguration.getDefaultSunriseClient());
@@ -43,6 +44,21 @@ public class WeatherApi {
 
     public WeatherApi(WeatherClient weatherClient) {
         this.localVarWeatherClient = weatherClient;
+    }
+
+    public WeatherApi(HashMap<String, String> headers) {
+        this(WeatherConfiguration.getDefaultSunriseClient());
+        this.localVarHeaderParams = headers;
+    }
+
+    public WeatherApi(WeatherClient weatherClient, HashMap<String, String> headers) {
+        this.localVarWeatherClient = weatherClient;
+        this.localVarHeaderParams = headers;
+    }
+
+
+    public WeatherApi(String header) {
+        this(WeatherConfiguration.getDefaultSunriseClient());
     }
 
     public WeatherClient getSunriseClient() {
@@ -72,39 +88,39 @@ public class WeatherApi {
 
     /**
      * Build call for classicGet
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
-     * @param altitude Whole meters above sea level (optional)
+     *
+     * @param lat       Latitude (required)
+     * @param lon       Longitude (required)
+     * @param altitude  Whole meters above sea level (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call classicGetCall(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {  };
+        String[] localBasePaths = new String[]{};
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
+        if (localCustomBaseUrl != null) {
             basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
+        } else if (localBasePaths.length > 0) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -118,6 +134,11 @@ public class WeatherApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (this.localVarHeaderParams == null) {
+            localVarHeaderParams.put("User-Agent", "openepi.io github.com/openearthplatforminitiative/openepi-client-java");
+        } else {
+            localVarHeaderParams.putAll(this.localVarHeaderParams);
+        }
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -134,7 +155,7 @@ public class WeatherApi {
         }
 
         final String[] localVarAccepts = {
-            "application/xml"
+                "application/xml"
         };
         final String localVarAccept = localVarWeatherClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -148,7 +169,7 @@ public class WeatherApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return localVarWeatherClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -169,30 +190,29 @@ public class WeatherApi {
     }
 
     /**
-     * 
      * Weather forecast for a specified place
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
+     *
+     * @param lat      Latitude (required)
+     * @param lon      Longitude (required)
      * @param altitude Whole meters above sea level (optional)
      * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public String getClassicForecast(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
         ApiResponse<String> localVarResp = classicGetWithHttpInfo(lat.floatValue(), lon.floatValue(), altitude);
@@ -200,107 +220,108 @@ public class WeatherApi {
     }
 
     /**
-     * 
      * Weather forecast for a specified place
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
+     *
+     * @param lat      Latitude (required)
+     * @param lon      Longitude (required)
      * @param altitude Whole meters above sea level (optional)
      * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<String> classicGetWithHttpInfo(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
         okhttp3.Call localVarCall = classicGetValidateBeforeCall(lat, lon, altitude, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<String>() {
+        }.getType();
         return localVarWeatherClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
+     * (asynchronously)
      * Weather forecast for a specified place
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
-     * @param altitude Whole meters above sea level (optional)
+     *
+     * @param lat       Latitude (required)
+     * @param lon       Longitude (required)
+     * @param altitude  Whole meters above sea level (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getClassicForecastAsync(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude, final ApiCallback<String> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = classicGetValidateBeforeCall(lat.floatValue(), lon.floatValue(), altitude, _callback);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<String>() {
+        }.getType();
         localVarWeatherClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for compactGet
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
-     * @param altitude Whole meters above sea level (optional)
+     *
+     * @param lat       Latitude (required)
+     * @param lon       Longitude (required)
+     * @param altitude  Whole meters above sea level (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call compactGetCall(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {  };
+        String[] localBasePaths = new String[]{};
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
+        if (localCustomBaseUrl != null) {
             basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
+        } else if (localBasePaths.length > 0) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -314,6 +335,11 @@ public class WeatherApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (this.localVarHeaderParams == null) {
+            localVarHeaderParams.put("User-Agent", "openepi.io github.com/openearthplatforminitiative/openepi-client-java");
+        } else {
+            localVarHeaderParams.putAll(this.localVarHeaderParams);
+        }
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -330,7 +356,7 @@ public class WeatherApi {
         }
 
         final String[] localVarAccepts = {
-            "application/json;charset=UTF-8"
+                "application/json;charset=UTF-8"
         };
         final String localVarAccept = localVarWeatherClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -344,7 +370,7 @@ public class WeatherApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return localVarWeatherClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -365,30 +391,29 @@ public class WeatherApi {
     }
 
     /**
-     * 
      * Weather forecast for a specified place
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
+     *
+     * @param lat      Latitude (required)
+     * @param lon      Longitude (required)
      * @param altitude Whole meters above sea level (optional)
      * @return METJSONForecast
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public METJSONForecast getCompactForecast(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
         ApiResponse<METJSONForecast> localVarResp = compactGetWithHttpInfo(lat.floatValue(), lon.floatValue(), altitude);
@@ -396,107 +421,108 @@ public class WeatherApi {
     }
 
     /**
-     * 
      * Weather forecast for a specified place
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
+     *
+     * @param lat      Latitude (required)
+     * @param lon      Longitude (required)
      * @param altitude Whole meters above sea level (optional)
      * @return ApiResponse&lt;METJSONForecast&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<METJSONForecast> compactGetWithHttpInfo(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
         okhttp3.Call localVarCall = compactGetValidateBeforeCall(lat, lon, altitude, null);
-        Type localVarReturnType = new TypeToken<METJSONForecast>(){}.getType();
+        Type localVarReturnType = new TypeToken<METJSONForecast>() {
+        }.getType();
         return localVarWeatherClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
+     * (asynchronously)
      * Weather forecast for a specified place
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
-     * @param altitude Whole meters above sea level (optional)
+     *
+     * @param lat       Latitude (required)
+     * @param lon       Longitude (required)
+     * @param altitude  Whole meters above sea level (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCompactForecastAsync(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude, final ApiCallback<METJSONForecast> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = compactGetValidateBeforeCall(lat.floatValue(), lon.floatValue(), altitude, _callback);
-        Type localVarReturnType = new TypeToken<METJSONForecast>(){}.getType();
+        Type localVarReturnType = new TypeToken<METJSONForecast>() {
+        }.getType();
         localVarWeatherClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
     /**
      * Build call for completeGet
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
-     * @param altitude Whole meters above sea level (optional)
+     *
+     * @param lat       Latitude (required)
+     * @param lon       Longitude (required)
+     * @param altitude  Whole meters above sea level (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call completeGetCall(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {  };
+        String[] localBasePaths = new String[]{};
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
+        if (localCustomBaseUrl != null) {
             basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
+        } else if (localBasePaths.length > 0) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -510,6 +536,11 @@ public class WeatherApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (this.localVarHeaderParams == null) {
+            localVarHeaderParams.put("User-Agent", "openepi.io github.com/openearthplatforminitiative/openepi-client-java");
+        } else {
+            localVarHeaderParams.putAll(this.localVarHeaderParams);
+        }
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -526,7 +557,7 @@ public class WeatherApi {
         }
 
         final String[] localVarAccepts = {
-            "application/json;charset=UTF-8"
+                "application/json;charset=UTF-8"
         };
         final String localVarAccept = localVarWeatherClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -540,7 +571,7 @@ public class WeatherApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return localVarWeatherClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -561,30 +592,29 @@ public class WeatherApi {
     }
 
     /**
-     * 
      * Weather forecast for a specified place
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
+     *
+     * @param lat      Latitude (required)
+     * @param lon      Longitude (required)
      * @param altitude Whole meters above sea level (optional)
      * @return METJSONForecast
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public METJSONForecast getCompleteForecast(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
         ApiResponse<METJSONForecast> localVarResp = completeGetWithHttpInfo(lat.floatValue(), lon.floatValue(), altitude);
@@ -592,68 +622,69 @@ public class WeatherApi {
     }
 
     /**
-     * 
      * Weather forecast for a specified place
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
+     *
+     * @param lat      Latitude (required)
+     * @param lon      Longitude (required)
      * @param altitude Whole meters above sea level (optional)
      * @return ApiResponse&lt;METJSONForecast&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<METJSONForecast> completeGetWithHttpInfo(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
         okhttp3.Call localVarCall = completeGetValidateBeforeCall(lat, lon, altitude, null);
-        Type localVarReturnType = new TypeToken<METJSONForecast>(){}.getType();
+        Type localVarReturnType = new TypeToken<METJSONForecast>() {
+        }.getType();
         return localVarWeatherClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
+     * (asynchronously)
      * Weather forecast for a specified place
-     * @param lat Latitude (required)
-     * @param lon Longitude (required)
-     * @param altitude Whole meters above sea level (optional)
+     *
+     * @param lat       Latitude (required)
+     * @param lon       Longitude (required)
+     * @param altitude  Whole meters above sea level (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getCompleteForecastAsync(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude, final ApiCallback<METJSONForecast> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = completeGetValidateBeforeCall(lat.floatValue(), lon.floatValue(), altitude, _callback);
-        Type localVarReturnType = new TypeToken<METJSONForecast>(){}.getType();
+        Type localVarReturnType = new TypeToken<METJSONForecast>() {
+        }.getType();
         localVarWeatherClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

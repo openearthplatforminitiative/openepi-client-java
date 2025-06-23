@@ -37,6 +37,7 @@ public class SunriseApi {
     private SunriseClient localVarSunriseClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
+    private Map<String, String> localVarHeaderParams;
 
     public SunriseApi() {
         this(SunriseConfiguration.getDefaultSunriseClient());
@@ -44,6 +45,16 @@ public class SunriseApi {
 
     public SunriseApi(SunriseClient SunriseClient) {
         this.localVarSunriseClient = SunriseClient;
+    }
+
+    public SunriseApi(HashMap<String, String> headers) {
+        this(SunriseConfiguration.getDefaultSunriseClient());
+        this.localVarHeaderParams = headers;
+    }
+
+    public SunriseApi(SunriseClient SunriseClient, HashMap<String, String> headers) {
+        this.localVarSunriseClient = SunriseClient;
+        this.localVarHeaderParams = headers;
     }
 
     public SunriseClient getSunriseClient() {
@@ -72,40 +83,40 @@ public class SunriseApi {
 
     /**
      * Build call for moonGet
-     * @param lat latitude (required)
-     * @param lon longtitude (required)
-     * @param date date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
-     * @param offset timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
+     *
+     * @param lat       latitude (required)
+     * @param lon       longtitude (required)
+     * @param date      date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
+     * @param offset    timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call moonGetCall(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable LocalDate date, @javax.annotation.Nullable String offset, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {  };
+        String[] localBasePaths = new String[]{};
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
+        if (localCustomBaseUrl != null) {
             basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
+        } else if (localBasePaths.length > 0) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -119,6 +130,11 @@ public class SunriseApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (this.localVarHeaderParams == null) {
+            localVarHeaderParams.put("User-Agent", "openepi.io github.com/openearthplatforminitiative/openepi-client-java");
+        } else {
+            localVarHeaderParams.putAll(this.localVarHeaderParams);
+        }
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -139,7 +155,7 @@ public class SunriseApi {
         }
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarSunriseClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -153,7 +169,7 @@ public class SunriseApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return localVarSunriseClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -174,31 +190,30 @@ public class SunriseApi {
     }
 
     /**
-     * 
      * Calculate sun or moon events, as seen from a specific location on Earth
-     * @param lat latitude (required)
-     * @param lon longtitude (required)
-     * @param date date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
+     *
+     * @param lat    latitude (required)
+     * @param lon    longtitude (required)
+     * @param date   date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
      * @param offset timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
      * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public String getMoon(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable LocalDate date, @javax.annotation.Nullable String offset) throws ApiException {
         ApiResponse<String> localVarResp = moonGetWithHttpInfo(lat.floatValue(), lon.floatValue(), date, offset);
@@ -206,109 +221,111 @@ public class SunriseApi {
     }
 
     /**
-     * 
      * Calculate sun or moon events, as seen from a specific location on Earth
-     * @param lat latitude (required)
-     * @param lon longtitude (required)
-     * @param date date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
+     *
+     * @param lat    latitude (required)
+     * @param lon    longtitude (required)
+     * @param date   date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
      * @param offset timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
      * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<String> moonGetWithHttpInfo(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable LocalDate date, @javax.annotation.Nullable String offset) throws ApiException {
         okhttp3.Call localVarCall = moonGetValidateBeforeCall(lat, lon, date, offset, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<String>() {
+        }.getType();
         return localVarSunriseClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
+     * (asynchronously)
      * Calculate sun or moon events, as seen from a specific location on Earth
-     * @param lat latitude (required)
-     * @param lon longtitude (required)
-     * @param date date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
-     * @param offset timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
+     *
+     * @param lat       latitude (required)
+     * @param lon       longtitude (required)
+     * @param date      date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
+     * @param offset    timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getMoonAsync(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable LocalDate date, @javax.annotation.Nullable String offset, final ApiCallback<String> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = moonGetValidateBeforeCall(lat.floatValue(), lon.floatValue(), date, offset, _callback);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<String>() {
+        }.getType();
         localVarSunriseClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
+
     /**
      * Build call for sunGet
-     * @param lat latitude (required)
-     * @param lon longtitude (required)
-     * @param date date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
-     * @param offset timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
+     *
+     * @param lat       latitude (required)
+     * @param lon       longtitude (required)
+     * @param date      date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
+     * @param offset    timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call sunGetCall(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable LocalDate date, @javax.annotation.Nullable String offset, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
-        String[] localBasePaths = new String[] {  };
+        String[] localBasePaths = new String[]{};
 
         // Determine Base Path to Use
-        if (localCustomBaseUrl != null){
+        if (localCustomBaseUrl != null) {
             basePath = localCustomBaseUrl;
-        } else if ( localBasePaths.length > 0 ) {
+        } else if (localBasePaths.length > 0) {
             basePath = localBasePaths[localHostIndex];
         } else {
             basePath = null;
@@ -322,6 +339,11 @@ public class SunriseApi {
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        if (this.localVarHeaderParams == null) {
+            localVarHeaderParams.put("User-Agent", "openepi.io github.com/openearthplatforminitiative/openepi-client-java");
+        } else {
+            localVarHeaderParams.putAll(this.localVarHeaderParams);
+        }
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
@@ -342,7 +364,7 @@ public class SunriseApi {
         }
 
         final String[] localVarAccepts = {
-            "application/json"
+                "application/json"
         };
         final String localVarAccept = localVarSunriseClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
@@ -356,7 +378,7 @@ public class SunriseApi {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
-        String[] localVarAuthNames = new String[] {  };
+        String[] localVarAuthNames = new String[]{};
         return localVarSunriseClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
@@ -377,31 +399,30 @@ public class SunriseApi {
     }
 
     /**
-     * 
      * Calculate sun or moon events, as seen from a specific location on Earth
-     * @param lat latitude (required)
-     * @param lon longtitude (required)
-     * @param date date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
+     *
+     * @param lat    latitude (required)
+     * @param lon    longtitude (required)
+     * @param date   date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
      * @param offset timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
      * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public METJSONSunrise getSunriseAndSunset(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable LocalDate date, @javax.annotation.Nullable String offset) throws ApiException {
         ApiResponse<METJSONSunrise> localVarResp = sunGetWithHttpInfo(lat.floatValue(), lon.floatValue(), date, offset);
@@ -409,70 +430,71 @@ public class SunriseApi {
     }
 
     /**
-     * 
      * Calculate sun or moon events, as seen from a specific location on Earth
-     * @param lat latitude (required)
-     * @param lon longtitude (required)
-     * @param date date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
+     *
+     * @param lat    latitude (required)
+     * @param lon    longtitude (required)
+     * @param date   date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
      * @param offset timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
      * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public ApiResponse<METJSONSunrise> sunGetWithHttpInfo(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable LocalDate date, @javax.annotation.Nullable String offset) throws ApiException {
         okhttp3.Call localVarCall = sunGetValidateBeforeCall(lat, lon, date, offset, null);
-        Type localVarReturnType = new TypeToken<METJSONSunrise>(){}.getType();
+        Type localVarReturnType = new TypeToken<METJSONSunrise>() {
+        }.getType();
         return localVarSunriseClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
-     *  (asynchronously)
+     * (asynchronously)
      * Calculate sun or moon events, as seen from a specific location on Earth
-     * @param lat latitude (required)
-     * @param lon longtitude (required)
-     * @param date date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
-     * @param offset timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
+     *
+     * @param lat       latitude (required)
+     * @param lon       longtitude (required)
+     * @param date      date (on YYYY-MM-DD format) in local time, not UTC. Defaults to today (optional)
+     * @param offset    timezone offset string (e.g +02:00 or -04:30\&quot;) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     * @http.response.details
-     <table border="1">
-       <caption>Response Details</caption>
-        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
-        <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
-        <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
-        <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
-        <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
-        <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
-        <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
-        <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
-        <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
-        <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
-        <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
-        <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
-        <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
-     </table>
+     * @http.response.details <table border="1">
+     * <caption>Response Details</caption>
+     * <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+     * <tr><td> 200 </td><td> Success </td><td>  -  </td></tr>
+     * <tr><td> 204 </td><td> 204 No Content </td><td>  -  </td></tr>
+     * <tr><td> 400 </td><td> 400 Bad Request </td><td>  -  </td></tr>
+     * <tr><td> 401 </td><td> 401 Unauthorized </td><td>  -  </td></tr>
+     * <tr><td> 403 </td><td> 403 Forbidden </td><td>  -  </td></tr>
+     * <tr><td> 404 </td><td> 404 Not Found </td><td>  -  </td></tr>
+     * <tr><td> 422 </td><td> 422 Unprocessable Entity </td><td>  -  </td></tr>
+     * <tr><td> 429 </td><td> 429 Too Many Requests </td><td>  -  </td></tr>
+     * <tr><td> 500 </td><td> 500 Internal Server Error </td><td>  -  </td></tr>
+     * <tr><td> 502 </td><td> 502 Bad Gateway </td><td>  -  </td></tr>
+     * <tr><td> 503 </td><td> 503 Service Unavailable </td><td>  -  </td></tr>
+     * <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
+     * </table>
      */
     public okhttp3.Call getSunriseAndSunsetAsync(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable LocalDate date, @javax.annotation.Nullable String offset, final ApiCallback<String> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = sunGetValidateBeforeCall(lat.floatValue(), lon.floatValue(), date, offset, _callback);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<String>() {
+        }.getType();
         localVarSunriseClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
