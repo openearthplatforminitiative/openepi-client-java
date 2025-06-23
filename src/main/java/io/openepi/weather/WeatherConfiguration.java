@@ -18,25 +18,25 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-12T08:53:23.751911+02:00[Europe/Oslo]", comments = "Generator version: 7.13.0")
-public class Configuration {
+public class WeatherConfiguration {
   public static final String VERSION = "2.0";
 
-  private static final AtomicReference<ApiClient> defaultApiClient = new AtomicReference<>();
-  private static volatile Supplier<ApiClient> apiClientFactory = ApiClient::new;
+  private static final AtomicReference<WeatherClient> defaultSunriseClient = new AtomicReference<>();
+  private static volatile Supplier<WeatherClient> SunriseClientFactory = WeatherClient::new;
 
   /**
    * Get the default API client, which would be used when creating API instances without providing an API client.
    *
    * @return Default API client
    */
-  public static ApiClient getDefaultApiClient() {
-    ApiClient client = defaultApiClient.get();
+  public static WeatherClient getDefaultSunriseClient() {
+    WeatherClient client = defaultSunriseClient.get();
     if (client == null) {
-      client = defaultApiClient.updateAndGet(val -> {
+      client = defaultSunriseClient.updateAndGet(val -> {
         if (val != null) { // changed by another thread
           return val;
         }
-        return apiClientFactory.get();
+        return SunriseClientFactory.get();
       });
     }
     return client;
@@ -45,19 +45,19 @@ public class Configuration {
   /**
    * Set the default API client, which would be used when creating API instances without providing an API client.
    *
-   * @param apiClient API client
+   * @param weatherClient API client
    */
-  public static void setDefaultApiClient(ApiClient apiClient) {
-    defaultApiClient.set(apiClient);
+  public static void setDefaultSunriseClient(WeatherClient weatherClient) {
+    defaultSunriseClient.set(weatherClient);
   }
 
   /**
-   * set the callback used to create new ApiClient objects
+   * set the callback used to create new SunriseClient objects
    */
-  public static void setApiClientFactory(Supplier<ApiClient> factory) {
-    apiClientFactory = Objects.requireNonNull(factory);
+  public static void setSunriseClientFactory(Supplier<WeatherClient> factory) {
+    SunriseClientFactory = Objects.requireNonNull(factory);
   }
 
-  private Configuration() {
+  private WeatherConfiguration() {
   }
 }

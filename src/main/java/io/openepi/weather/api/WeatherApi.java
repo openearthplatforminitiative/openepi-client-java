@@ -17,8 +17,8 @@ import io.openepi.common.ApiCallback;
 import io.openepi.common.ApiException;
 import io.openepi.common.ApiResponse;
 import io.openepi.common.Pair;
-import io.openepi.weather.ApiClient;
-import io.openepi.weather.Configuration;
+import io.openepi.weather.WeatherClient;
+import io.openepi.weather.WeatherConfiguration;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -26,30 +26,31 @@ import com.google.gson.reflect.TypeToken;
 import io.openepi.weather.model.METJSONForecast;
 
 import java.lang.reflect.Type;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class WeatherApi {
-    private ApiClient localVarApiClient;
+    private WeatherClient localVarWeatherClient;
     private int localHostIndex;
     private String localCustomBaseUrl;
 
     public WeatherApi() {
-        this(Configuration.getDefaultApiClient());
+        this(WeatherConfiguration.getDefaultSunriseClient());
     }
 
-    public WeatherApi(ApiClient apiClient) {
-        this.localVarApiClient = apiClient;
+    public WeatherApi(WeatherClient weatherClient) {
+        this.localVarWeatherClient = weatherClient;
     }
 
-    public ApiClient getApiClient() {
-        return localVarApiClient;
+    public WeatherClient getSunriseClient() {
+        return localVarWeatherClient;
     }
 
-    public void setApiClient(ApiClient apiClient) {
-        this.localVarApiClient = apiClient;
+    public void setSunriseClient(WeatherClient weatherClient) {
+        this.localVarWeatherClient = weatherClient;
     }
 
     public int getHostIndex() {
@@ -121,34 +122,34 @@ public class WeatherApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (altitude != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("altitude", altitude));
+            localVarQueryParams.addAll(localVarWeatherClient.parameterToPair("altitude", altitude));
         }
 
         if (lat != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("lat", lat));
+            localVarQueryParams.addAll(localVarWeatherClient.parameterToPair("lat", lat));
         }
 
         if (lon != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("lon", lon));
+            localVarQueryParams.addAll(localVarWeatherClient.parameterToPair("lon", lon));
         }
 
         final String[] localVarAccepts = {
             "application/xml"
         };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        final String localVarAccept = localVarWeatherClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
         final String[] localVarContentTypes = {
         };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String localVarContentType = localVarWeatherClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
         String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarWeatherClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -193,8 +194,8 @@ public class WeatherApi {
         <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
      </table>
      */
-    public String getClassicForecast(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
-        ApiResponse<String> localVarResp = classicGetWithHttpInfo(lat, lon, altitude);
+    public String getClassicForecast(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
+        ApiResponse<String> localVarResp = classicGetWithHttpInfo(lat.floatValue(), lon.floatValue(), altitude);
         return localVarResp.getData();
     }
 
@@ -227,7 +228,7 @@ public class WeatherApi {
     public ApiResponse<String> classicGetWithHttpInfo(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
         okhttp3.Call localVarCall = classicGetValidateBeforeCall(lat, lon, altitude, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarWeatherClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -257,11 +258,11 @@ public class WeatherApi {
         <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getClassicForecastAsync(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude, final ApiCallback<String> _callback) throws ApiException {
+    public okhttp3.Call getClassicForecastAsync(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude, final ApiCallback<String> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = classicGetValidateBeforeCall(lat, lon, altitude, _callback);
+        okhttp3.Call localVarCall = classicGetValidateBeforeCall(lat.floatValue(), lon.floatValue(), altitude, _callback);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarWeatherClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
@@ -317,34 +318,34 @@ public class WeatherApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (altitude != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("altitude", altitude));
+            localVarQueryParams.addAll(localVarWeatherClient.parameterToPair("altitude", altitude));
         }
 
         if (lat != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("lat", lat));
+            localVarQueryParams.addAll(localVarWeatherClient.parameterToPair("lat", lat));
         }
 
         if (lon != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("lon", lon));
+            localVarQueryParams.addAll(localVarWeatherClient.parameterToPair("lon", lon));
         }
 
         final String[] localVarAccepts = {
             "application/json;charset=UTF-8"
         };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        final String localVarAccept = localVarWeatherClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
         final String[] localVarContentTypes = {
         };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String localVarContentType = localVarWeatherClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
         String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarWeatherClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -389,8 +390,8 @@ public class WeatherApi {
         <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
      </table>
      */
-    public METJSONForecast getCompactForecast(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
-        ApiResponse<METJSONForecast> localVarResp = compactGetWithHttpInfo(lat, lon, altitude);
+    public METJSONForecast getCompactForecast(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
+        ApiResponse<METJSONForecast> localVarResp = compactGetWithHttpInfo(lat.floatValue(), lon.floatValue(), altitude);
         return localVarResp.getData();
     }
 
@@ -423,7 +424,7 @@ public class WeatherApi {
     public ApiResponse<METJSONForecast> compactGetWithHttpInfo(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
         okhttp3.Call localVarCall = compactGetValidateBeforeCall(lat, lon, altitude, null);
         Type localVarReturnType = new TypeToken<METJSONForecast>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarWeatherClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -453,11 +454,11 @@ public class WeatherApi {
         <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCompactForecastAsync(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude, final ApiCallback<METJSONForecast> _callback) throws ApiException {
+    public okhttp3.Call getCompactForecastAsync(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude, final ApiCallback<METJSONForecast> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = compactGetValidateBeforeCall(lat, lon, altitude, _callback);
+        okhttp3.Call localVarCall = compactGetValidateBeforeCall(lat.floatValue(), lon.floatValue(), altitude, _callback);
         Type localVarReturnType = new TypeToken<METJSONForecast>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarWeatherClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 
@@ -513,34 +514,34 @@ public class WeatherApi {
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
         if (altitude != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("altitude", altitude));
+            localVarQueryParams.addAll(localVarWeatherClient.parameterToPair("altitude", altitude));
         }
 
         if (lat != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("lat", lat));
+            localVarQueryParams.addAll(localVarWeatherClient.parameterToPair("lat", lat));
         }
 
         if (lon != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("lon", lon));
+            localVarQueryParams.addAll(localVarWeatherClient.parameterToPair("lon", lon));
         }
 
         final String[] localVarAccepts = {
             "application/json;charset=UTF-8"
         };
-        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        final String localVarAccept = localVarWeatherClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {
             localVarHeaderParams.put("Accept", localVarAccept);
         }
 
         final String[] localVarContentTypes = {
         };
-        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        final String localVarContentType = localVarWeatherClient.selectHeaderContentType(localVarContentTypes);
         if (localVarContentType != null) {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
         String[] localVarAuthNames = new String[] {  };
-        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+        return localVarWeatherClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
@@ -585,8 +586,8 @@ public class WeatherApi {
         <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
      </table>
      */
-    public METJSONForecast getCompleteForecast(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
-        ApiResponse<METJSONForecast> localVarResp = completeGetWithHttpInfo(lat, lon, altitude);
+    public METJSONForecast getCompleteForecast(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
+        ApiResponse<METJSONForecast> localVarResp = completeGetWithHttpInfo(lat.floatValue(), lon.floatValue(), altitude);
         return localVarResp.getData();
     }
 
@@ -619,7 +620,7 @@ public class WeatherApi {
     public ApiResponse<METJSONForecast> completeGetWithHttpInfo(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude) throws ApiException {
         okhttp3.Call localVarCall = completeGetValidateBeforeCall(lat, lon, altitude, null);
         Type localVarReturnType = new TypeToken<METJSONForecast>(){}.getType();
-        return localVarApiClient.execute(localVarCall, localVarReturnType);
+        return localVarWeatherClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
@@ -649,11 +650,11 @@ public class WeatherApi {
         <tr><td> 504 </td><td> 504 Gateway Timeout </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call getCompleteForecastAsync(@javax.annotation.Nonnull Float lat, @javax.annotation.Nonnull Float lon, @javax.annotation.Nullable Integer altitude, final ApiCallback<METJSONForecast> _callback) throws ApiException {
+    public okhttp3.Call getCompleteForecastAsync(@javax.annotation.Nonnull BigDecimal lat, @javax.annotation.Nonnull BigDecimal lon, @javax.annotation.Nullable Integer altitude, final ApiCallback<METJSONForecast> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = completeGetValidateBeforeCall(lat, lon, altitude, _callback);
+        okhttp3.Call localVarCall = completeGetValidateBeforeCall(lat.floatValue(), lon.floatValue(), altitude, _callback);
         Type localVarReturnType = new TypeToken<METJSONForecast>(){}.getType();
-        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        localVarWeatherClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
 }

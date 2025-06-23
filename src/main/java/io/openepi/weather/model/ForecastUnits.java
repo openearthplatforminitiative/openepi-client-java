@@ -15,35 +15,22 @@ package io.openepi.weather.model;
 
 import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.Arrays;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import io.openepi.weather.JSON;
+import io.openepi.weather.WeatherJSON;
 
 /**
  * ForecastUnits
@@ -797,7 +784,7 @@ public class ForecastUnits {
    * @throws IOException if the JSON string is invalid with respect to ForecastUnits
    */
   public static ForecastUnits fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ForecastUnits.class);
+    return WeatherJSON.getGson().fromJson(jsonString, ForecastUnits.class);
   }
 
   /**
@@ -806,7 +793,7 @@ public class ForecastUnits {
    * @return JSON string
    */
   public String toJson() {
-    return JSON.getGson().toJson(this);
+    return WeatherJSON.getGson().toJson(this);
   }
 }
 

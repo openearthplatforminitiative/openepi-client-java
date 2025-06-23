@@ -15,39 +15,22 @@ package io.openepi.weather.model;
 
 import java.util.Objects;
 import com.google.gson.TypeAdapter;
-import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
-import java.util.Arrays;
-import io.openepi.weather.model.ForecastTimeStepDataInstant;
-import io.openepi.weather.model.ForecastTimeStepDataNext12Hours;
-import io.openepi.weather.model.ForecastTimeStepDataNext1Hours;
-import io.openepi.weather.model.ForecastTimeStepDataNext6Hours;
+
+import io.openepi.weather.WeatherJSON;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonDeserializationContext;
-import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapterFactory;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.TypeAdapter;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
-import java.io.IOException;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import io.openepi.weather.JSON;
 
 /**
  * Forecast for a specific time
@@ -295,7 +278,7 @@ public class ForecastTimeStepData {
    * @throws IOException if the JSON string is invalid with respect to ForecastTimeStepData
    */
   public static ForecastTimeStepData fromJson(String jsonString) throws IOException {
-    return JSON.getGson().fromJson(jsonString, ForecastTimeStepData.class);
+    return WeatherJSON.getGson().fromJson(jsonString, ForecastTimeStepData.class);
   }
 
   /**
@@ -304,7 +287,7 @@ public class ForecastTimeStepData {
    * @return JSON string
    */
   public String toJson() {
-    return JSON.getGson().toJson(this);
+    return WeatherJSON.getGson().toJson(this);
   }
 }
 

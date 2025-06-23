@@ -52,18 +52,17 @@ import java.util.regex.Pattern;
 
 import io.openepi.common.auth.Authentication;
 import io.openepi.common.auth.HttpBasicAuth;
-import io.openepi.common.auth.HttpBearerAuth;
 import io.openepi.common.auth.ApiKeyAuth;
 
 /**
- * <p>ApiClient class.</p>
+ * <p>SunriseClient class.</p>
  */
-public class ApiClient {
+public class WeatherClient {
 
     private String basePath = "https://api.met.no/weatherapi/locationforecast/2.0";
     protected List<ServerConfiguration> servers = new ArrayList<ServerConfiguration>(Arrays.asList(
     new ServerConfiguration(
-      "https://api.met.no/weatherapi/locationforecast/2.0",
+      "/weatherapi/locationforecast/2.0",
       "No description provided",
       new HashMap<String, ServerVariable>()
     )
@@ -87,14 +86,14 @@ public class ApiClient {
     private KeyManager[] keyManagers;
 
     private OkHttpClient httpClient;
-    private JSON json;
+    private WeatherJSON weatherJson;
 
     private HttpLoggingInterceptor loggingInterceptor;
 
     /**
-     * Basic constructor for ApiClient
+     * Basic constructor for SunriseClient
      */
-    public ApiClient() {
+    public WeatherClient() {
         init();
         initHttpClient();
 
@@ -108,7 +107,7 @@ public class ApiClient {
      *
      * @param client a {@link okhttp3.OkHttpClient} object
      */
-    public ApiClient(OkHttpClient client) {
+    public WeatherClient(OkHttpClient client) {
         init();
 
         httpClient = client;
@@ -135,7 +134,7 @@ public class ApiClient {
     private void init() {
         verifyingSsl = true;
 
-        json = new JSON();
+        weatherJson = new WeatherJSON();
 
         // Set default User-Agent.
         setUserAgent("OpenAPI-Generator/2.0/java");
@@ -155,10 +154,10 @@ public class ApiClient {
     /**
      * Set base path
      *
-     * @param basePath Base path of the URL (e.g http://localhost/weatherapi/locationforecast/2.0
+     * @param basePath Base path of the URL (e.g https://api.met.no/weatherapi/locationforecast/2.0
      * @return An instance of OkHttpClient
      */
-    public ApiClient setBasePath(String basePath) {
+    public WeatherClient setBasePath(String basePath) {
         this.basePath = basePath;
         this.serverIndex = null;
         return this;
@@ -168,7 +167,7 @@ public class ApiClient {
         return servers;
     }
 
-    public ApiClient setServers(List<ServerConfiguration> servers) {
+    public WeatherClient setServers(List<ServerConfiguration> servers) {
         this.servers = servers;
         return this;
     }
@@ -177,7 +176,7 @@ public class ApiClient {
         return serverIndex;
     }
 
-    public ApiClient setServerIndex(Integer serverIndex) {
+    public WeatherClient setServerIndex(Integer serverIndex) {
         this.serverIndex = serverIndex;
         return this;
     }
@@ -186,7 +185,7 @@ public class ApiClient {
         return serverVariables;
     }
 
-    public ApiClient setServerVariables(Map<String, String> serverVariables) {
+    public WeatherClient setServerVariables(Map<String, String> serverVariables) {
         this.serverVariables = serverVariables;
         return this;
     }
@@ -207,7 +206,7 @@ public class ApiClient {
      * @return Api Client
      * @throws java.lang.NullPointerException when newHttpClient is null
      */
-    public ApiClient setHttpClient(OkHttpClient newHttpClient) {
+    public WeatherClient setHttpClient(OkHttpClient newHttpClient) {
         this.httpClient = Objects.requireNonNull(newHttpClient, "HttpClient must not be null!");
         return this;
     }
@@ -217,18 +216,18 @@ public class ApiClient {
      *
      * @return JSON object
      */
-    public JSON getJSON() {
-        return json;
+    public WeatherJSON getJSON() {
+        return weatherJson;
     }
 
     /**
      * Set JSON
      *
-     * @param json JSON object
+     * @param weatherJson JSON object
      * @return Api client
      */
-    public ApiClient setJSON(JSON json) {
-        this.json = json;
+    public WeatherClient setJSON(WeatherJSON weatherJson) {
+        this.weatherJson = weatherJson;
         return this;
     }
 
@@ -247,9 +246,9 @@ public class ApiClient {
      * NOTE: Do NOT set to false in production code, otherwise you would face multiple types of cryptographic attacks.
      *
      * @param verifyingSsl True to verify TLS/SSL connection
-     * @return ApiClient
+     * @return SunriseClient
      */
-    public ApiClient setVerifyingSsl(boolean verifyingSsl) {
+    public WeatherClient setVerifyingSsl(boolean verifyingSsl) {
         this.verifyingSsl = verifyingSsl;
         applySslSettings();
         return this;
@@ -269,9 +268,9 @@ public class ApiClient {
      * Use null to reset to default.
      *
      * @param sslCaCert input stream for SSL CA cert
-     * @return ApiClient
+     * @return SunriseClient
      */
-    public ApiClient setSslCaCert(InputStream sslCaCert) {
+    public WeatherClient setSslCaCert(InputStream sslCaCert) {
         this.sslCaCert = sslCaCert;
         applySslSettings();
         return this;
@@ -291,9 +290,9 @@ public class ApiClient {
      * Use null to reset to default.
      *
      * @param managers The KeyManagers to use
-     * @return ApiClient
+     * @return SunriseClient
      */
-    public ApiClient setKeyManagers(KeyManager[] managers) {
+    public WeatherClient setKeyManagers(KeyManager[] managers) {
         this.keyManagers = managers;
         applySslSettings();
         return this;
@@ -312,10 +311,10 @@ public class ApiClient {
      * <p>Setter for the field <code>dateFormat</code>.</p>
      *
      * @param dateFormat a {@link java.text.DateFormat} object
-     * @return a {@link io.openepi.weather.ApiClient} object
+     * @return a {@link WeatherClient} object
      */
-    public ApiClient setDateFormat(DateFormat dateFormat) {
-        JSON.setDateFormat(dateFormat);
+    public WeatherClient setDateFormat(DateFormat dateFormat) {
+        WeatherJSON.setDateFormat(dateFormat);
         return this;
     }
 
@@ -323,10 +322,10 @@ public class ApiClient {
      * <p>Set SqlDateFormat.</p>
      *
      * @param dateFormat a {@link java.text.DateFormat} object
-     * @return a {@link io.openepi.weather.ApiClient} object
+     * @return a {@link WeatherClient} object
      */
-    public ApiClient setSqlDateFormat(DateFormat dateFormat) {
-        JSON.setSqlDateFormat(dateFormat);
+    public WeatherClient setSqlDateFormat(DateFormat dateFormat) {
+        WeatherJSON.setSqlDateFormat(dateFormat);
         return this;
     }
 
@@ -334,10 +333,10 @@ public class ApiClient {
      * <p>Set OffsetDateTimeFormat.</p>
      *
      * @param dateFormat a {@link java.time.format.DateTimeFormatter} object
-     * @return a {@link io.openepi.weather.ApiClient} object
+     * @return a {@link WeatherClient} object
      */
-    public ApiClient setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
-        JSON.setOffsetDateTimeFormat(dateFormat);
+    public WeatherClient setOffsetDateTimeFormat(DateTimeFormatter dateFormat) {
+        WeatherJSON.setOffsetDateTimeFormat(dateFormat);
         return this;
     }
 
@@ -345,10 +344,10 @@ public class ApiClient {
      * <p>Set LocalDateFormat.</p>
      *
      * @param dateFormat a {@link java.time.format.DateTimeFormatter} object
-     * @return a {@link io.openepi.weather.ApiClient} object
+     * @return a {@link WeatherClient} object
      */
-    public ApiClient setLocalDateFormat(DateTimeFormatter dateFormat) {
-        JSON.setLocalDateFormat(dateFormat);
+    public WeatherClient setLocalDateFormat(DateTimeFormatter dateFormat) {
+        WeatherJSON.setLocalDateFormat(dateFormat);
         return this;
     }
 
@@ -356,10 +355,10 @@ public class ApiClient {
      * <p>Set LenientOnJson.</p>
      *
      * @param lenientOnJson a boolean
-     * @return a {@link io.openepi.weather.ApiClient} object
+     * @return a {@link WeatherClient} object
      */
-    public ApiClient setLenientOnJson(boolean lenientOnJson) {
-        JSON.setLenientOnJson(lenientOnJson);
+    public WeatherClient setLenientOnJson(boolean lenientOnJson) {
+        WeatherJSON.setLenientOnJson(lenientOnJson);
         return this;
     }
 
@@ -481,9 +480,9 @@ public class ApiClient {
      * Set the User-Agent header's value (by adding to the default header map).
      *
      * @param userAgent HTTP request's user agent
-     * @return ApiClient
+     * @return SunriseClient
      */
-    public ApiClient setUserAgent(String userAgent) {
+    public WeatherClient setUserAgent(String userAgent) {
         addDefaultHeader("User-Agent", userAgent);
         return this;
     }
@@ -493,9 +492,9 @@ public class ApiClient {
      *
      * @param key The header's key
      * @param value The header's value
-     * @return ApiClient
+     * @return SunriseClient
      */
-    public ApiClient addDefaultHeader(String key, String value) {
+    public WeatherClient addDefaultHeader(String key, String value) {
         defaultHeaderMap.put(key, value);
         return this;
     }
@@ -505,9 +504,9 @@ public class ApiClient {
      *
      * @param key The cookie's key
      * @param value The cookie's value
-     * @return ApiClient
+     * @return SunriseClient
      */
-    public ApiClient addDefaultCookie(String key, String value) {
+    public WeatherClient addDefaultCookie(String key, String value) {
         defaultCookieMap.put(key, value);
         return this;
     }
@@ -525,9 +524,9 @@ public class ApiClient {
      * Enable/disable debugging for this API client.
      *
      * @param debugging To enable (true) or disable (false) debugging
-     * @return ApiClient
+     * @return SunriseClient
      */
-    public ApiClient setDebugging(boolean debugging) {
+    public WeatherClient setDebugging(boolean debugging) {
         if (debugging != this.debugging) {
             if (debugging) {
                 loggingInterceptor = new HttpLoggingInterceptor();
@@ -560,9 +559,9 @@ public class ApiClient {
      * Set the temporary folder path (for downloading files)
      *
      * @param tempFolderPath Temporary folder path
-     * @return ApiClient
+     * @return SunriseClient
      */
-    public ApiClient setTempFolderPath(String tempFolderPath) {
+    public WeatherClient setTempFolderPath(String tempFolderPath) {
         this.tempFolderPath = tempFolderPath;
         return this;
     }
@@ -584,7 +583,7 @@ public class ApiClient {
      * @param connectionTimeout connection timeout in milliseconds
      * @return Api client
      */
-    public ApiClient setConnectTimeout(int connectionTimeout) {
+    public WeatherClient setConnectTimeout(int connectionTimeout) {
         httpClient = httpClient.newBuilder().connectTimeout(connectionTimeout, TimeUnit.MILLISECONDS).build();
         return this;
     }
@@ -606,7 +605,7 @@ public class ApiClient {
      * @param readTimeout read timeout in milliseconds
      * @return Api client
      */
-    public ApiClient setReadTimeout(int readTimeout) {
+    public WeatherClient setReadTimeout(int readTimeout) {
         httpClient = httpClient.newBuilder().readTimeout(readTimeout, TimeUnit.MILLISECONDS).build();
         return this;
     }
@@ -628,7 +627,7 @@ public class ApiClient {
      * @param writeTimeout connection timeout in milliseconds
      * @return Api client
      */
-    public ApiClient setWriteTimeout(int writeTimeout) {
+    public WeatherClient setWriteTimeout(int writeTimeout) {
         httpClient = httpClient.newBuilder().writeTimeout(writeTimeout, TimeUnit.MILLISECONDS).build();
         return this;
     }
@@ -645,7 +644,7 @@ public class ApiClient {
             return "";
         } else if (param instanceof Date || param instanceof OffsetDateTime || param instanceof LocalDate) {
             //Serialize to json string and remove the " enclosing characters
-            String jsonStr = JSON.serialize(param);
+            String jsonStr = WeatherJSON.serialize(param);
             return jsonStr.substring(1, jsonStr.length() - 1);
         } else if (param instanceof Collection) {
             StringBuilder b = new StringBuilder();
@@ -921,7 +920,7 @@ public class ApiClient {
         }
         try {
             if (isJsonMime(contentType)) {
-                return JSON.deserialize(respBody.byteStream(), returnType);
+                return WeatherJSON.deserialize(respBody.byteStream(), returnType);
             } else if (returnType.equals(String.class)) {
                 String respBodyString = respBody.string();
                 if (respBodyString.isEmpty()) {
@@ -962,7 +961,7 @@ public class ApiClient {
         } else if (isJsonMime(contentType)) {
             String content;
             if (obj != null) {
-                content = JSON.serialize(obj);
+                content = WeatherJSON.serialize(obj);
             } else {
                 content = null;
             }
@@ -1453,7 +1452,7 @@ public class ApiClient {
         } else {
             String content;
             if (obj != null) {
-                content = JSON.serialize(obj);
+                content = WeatherJSON.serialize(obj);
             } else {
                 content = null;
             }
