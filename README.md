@@ -181,7 +181,7 @@ public class Main {
 #### Sunrise and sunset
 
 ```java
-import io.openepi.weather.api.WeatherApi;
+import io.openepi.weather.api.SunriseApi;
 import io.openepi.weather.model.METJSONSunrise;
 import io.openepi.common.ApiException;
 
@@ -192,13 +192,13 @@ public class Main {
         BigDecimal lat = new BigDecimal("52.52");
         BigDecimal lon = new BigDecimal("13.40");
 
-        WeatherApi api = new WeatherApi();
+        SunriseApi api = new SunriseApi();
         try {
-            METJSONSunrise response = api.getSunriseAndSunset(lat, lon, null);
+            METJSONSunrise response = api.getSunriseAndSunset(lat, lon, null, null);
             System.out.println(response.getProperties().getSunrise().getTime());
             System.out.println(response.getProperties().getSunset().getTime());
         } catch (ApiException e) {
-            System.err.println("Exception when calling WeatherApi#getSunriseAndSunset");
+            System.err.println("Exception when calling SunriseApi#getSunriseAndSunset");
             e.printStackTrace();
         }
     }
@@ -212,13 +212,14 @@ Most of this library is generated using `openapi-generator`: https://github.com/
 The generator generates a lot of the same code for each API. This library therefore transfers the repeating code to the
 `common` package.
 
-Generation should be done in a separate folder, and files that are relevant should be copied into this project:
+Generation should be done in a separate folder, and files that are relevant should be copied and adapted into this project:
 ```bash
-openapi-generator generate -i https://api.openepi.io/crop-health/openapi.json -g java -o ./crop-health
-openapi-generator generate -i https://api.openepi.io/deforestation/openapi.json -g java -o ./deforestation
-openapi-generator generate -i https://api.openepi.io/flood/openapi.json -g java -o ./flood
-openapi-generator generate -i https://api.openepi.io/soil/openapi.json -g java -o ./soil
-openapi-generator generate -i https://api.openepi.io/weather/openapi.json -g java -o ./weather
+openapi-generator generate -i https://api.openepi.io/crop-health/openapi.weatherJson -g java -o ./crop-health
+openapi-generator generate -i https://api.openepi.io/deforestation/openapi.weatherJson -g java -o ./deforestation
+openapi-generator generate -i https://api.openepi.io/flood/openapi.weatherJson -g java -o ./flood
+openapi-generator generate -i https://api.openepi.io/soil/openapi.weatherJson -g java -o ./soil
+openapi-generator generate -i https://api.met.no/weatherapi/locationforecast/2.0/swagger -g java -o ./weather
+openapi-generator generate -i https://api.met.no/weatherapi/sunrise/3.0/swagger -g java -o ./sunrise
 ```
 
 There is a special case for the geocoding api. When the api generates its openapi spec, it generates with `anyOf` and 
@@ -226,15 +227,15 @@ There is a special case for the geocoding api. When the api generates its openap
  
 The following commands downloads and replaces the part that makes `openapi-generator` crash.
 ```bash
-curl -O https://api.openepi.io/geocoding/openapi.json
+curl -O https://api.openepi.io/geocoding/openapi.weatherJson
 jq '.components.schemas.Properties.properties.extent = {
     "type": "array",
     "maxItems": 4,
     "minItems": 4,
     "title": "Extent",
     "description": "The bounding box formatted as (min latitude, max latitude, min longitude, max longitude)"
-}' openapi.json > formatted.json
-openapi-generator generate -i ./formatted.json -g java -o ./geocoding
+}' openapi.weatherJson > formatted.weatherJson
+openapi-generator generate -i ./formatted.weatherJson -g java -o ./geocoding
 ```
 
 
