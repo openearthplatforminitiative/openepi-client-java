@@ -1,3 +1,17 @@
+# [1.1.0](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.6...v1.1.0) (2025-06-25)
+
+
+### Bug Fixes
+
+* changes tests to mock server instead of mocking functions ([975e92c](https://github.com/openearthplatforminitiative/openepi-client-java/commit/975e92cc7153d605d6add40fcbac689229dc65f8))
+
+
+### Features
+
+* adds locationforecast directly from met ([11cefac](https://github.com/openearthplatforminitiative/openepi-client-java/commit/11cefac02e1b420238ed226b46e1c5abca393110))
+* adds MET user agent header ([a77df2f](https://github.com/openearthplatforminitiative/openepi-client-java/commit/a77df2f5f40d152cc0369e7556d54227e8340c8b))
+* adds sunrise and sunset directly from met ([248c931](https://github.com/openearthplatforminitiative/openepi-client-java/commit/248c9310e43c5eea07bdc3416763aa979798d239))
+
 ## [1.0.6](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.5...v1.0.6) (2024-12-05)
 
 
