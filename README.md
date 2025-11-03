@@ -11,7 +11,7 @@ Add the following to your `pom.xml`:
 <dependency>
     <groupId>io.openepi</groupId>
     <artifactId>openepi-client</artifactId>
-    <version>0.1</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
@@ -30,94 +30,20 @@ Works on Java 8 (and higher)
 
 ## Examples
 
-### Crop Health
-```java
-import io.openepi.client.CropHealthApi;
-import io.openepi.client.ApiException;
-import io.openepi.crop_health.model.BinaryPredictionResponse;
-import java.io.File;
-
-public class Main {
-    public static void main(String[] args) {
-        CropHealthApi api = new CropHealthApi();
-        try {
-            File file = new File("path/to/file");
-            BinaryPredictionResponse response = api.predictionsWithBinary(file);
-            System.out.println(response.getHLT());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CropHealthApi#getCropHealth");
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Deforestation
-
-```java
-import io.openepi.common.ApiException;
-import io.openepi.deforestation.api.DeforestationApi;
-import io.openepi.deforestation.model.DeforestationBasinGeoJSON;
-
-import java.math.BigDecimal;
-
-
-public class Main {
-    public static void main(String[] args) {
-        DeforestationApi api = new DeforestationApi();
-        try {
-            BigDecimal lon = new BigDecimal("30.06");
-            BigDecimal lat = BigDecimal.valueOf(-1.94);
-            DeforestationBasinGeoJSON response = api.getLossyearBasinSinglePoint(lon, lat);
-            System.out.println(response.getFeatures());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling DeforestationApi#lossyearBasinGet");
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Flood
-
-```java
-import io.openepi.flood.api.FloodApi;
-import io.openepi.flood.model.SummaryResponseModel;
-import io.openepi.common.ApiException;
-
-import java.math.BigDecimal;
-
-public class Main {
-    public static void main(String[] args) {
-        FloodApi api = new FloodApi();
-        try {
-            BigDecimal lon = new BigDecimal("33.57");
-            BigDecimal lat = BigDecimal.valueOf(-1.37);
-            SummaryResponseModel response = api.getForecastSummarySinglePoint(lon, lat, false);
-            System.out.println(response.getQueriedLocation().getFeatures());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling FloodApi#getFlood");
-            e.printStackTrace();
-        }
-    }
-}
-```
-
 ### Geocoding
 
 ```java
-import io.openepi.geocoding.api.GeocodingApi;
+import io.openepi.geocoding.GeocodingClient;
 import io.openepi.geocoding.model.FeatureCollection;
-import io.openepi.common.ApiException;
 
 public class Main {
     public static void main(String[] args) {
-        GeocodingApi api = new GeocodingApi();
+        GeocodingClient client = new GeocodingClient();
         try {
-            FeatureCollection response = api.getGeocoding("Rwanda");
+            FeatureCollection response = client.geocode("Rwanda");
             System.out.println(response);
         } catch (ApiException e) {
-            System.err.println("Exception when calling GeocodingApi#getGeocoding");
+            System.err.println("Exception when calling GeocodingClient#geocode");
             e.printStackTrace();
         }
     }
@@ -125,31 +51,7 @@ public class Main {
 
 ```
 
-### Soil
 
-```java
-import io.openepi.soil.api.SoilApi;
-import io.openepi.soil.model.SoilTypeJSON;
-import io.openepi.common.ApiException;
-
-import java.math.BigDecimal;
-
-public class Main {
-    public static void main(String[] args) {
-        BigDecimal lon = new BigDecimal("9.58");
-        BigDecimal lat = new BigDecimal("60.1");
-        SoilApi api = new SoilApi();
-        try {
-            SoilTypeJSON response = api.getSoilType(lon, lat, null);
-            System.out.println(response);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling SoilApi#getSoil");
-            e.printStackTrace();
-        }
-    }
-}
-
-```
 
 ### Weather
 
@@ -214,16 +116,9 @@ The generator generates a lot of the same code for each API. This library theref
 
 Generation should be done in a separate folder, and files that are relevant should be copied and adapted into this project:
 ```bash
-openapi-generator generate -i https://api.openepi.io/crop-health/openapi.weatherJson -g java -o ./crop-health
-openapi-generator generate -i https://api.openepi.io/deforestation/openapi.weatherJson -g java -o ./deforestation
-openapi-generator generate -i https://api.openepi.io/flood/openapi.weatherJson -g java -o ./flood
-openapi-generator generate -i https://api.openepi.io/soil/openapi.weatherJson -g java -o ./soil
 openapi-generator generate -i https://api.met.no/weatherapi/locationforecast/2.0/swagger -g java -o ./weather
 openapi-generator generate -i https://api.met.no/weatherapi/sunrise/3.0/swagger -g java -o ./sunrise
 ```
-
-There is a special case for the geocoding api. When the api generates its openapi spec, it generates with `anyOf` and 
-`prefixItems`, which `openapi-generator` does not support.
  
 The following commands downloads and replaces the part that makes `openapi-generator` crash.
 ```bash

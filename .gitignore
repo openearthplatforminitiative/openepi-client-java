@@ -85,3 +85,6 @@ docs
 
 ### Node
 node_modules/
+
+### Idea
+.idea/
