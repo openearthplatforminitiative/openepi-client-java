@@ -1,3 +1,19 @@
+# [2.0.0](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.1.0...v2.0.0) (2025-11-05)
+
+
+* Merge pull request [#12](https://github.com/openearthplatforminitiative/openepi-client-java/issues/12) from openearthplatforminitiative/api-retirement ([353a4cb](https://github.com/openearthplatforminitiative/openepi-client-java/commit/353a4cb7a627830545bde3cb04e08c7f129768b3))
+
+
+### Features
+
+* Rewriting geocoding api to use remote api directly. ([51da65c](https://github.com/openearthplatforminitiative/openepi-client-java/commit/51da65c396eae7a89dcba5ae7f04114430d4cffb))
+
+
+### BREAKING CHANGES
+
+* Retiring custom OpenEPI apis.
+* Retiring custom OpenEPI Apis, and rewriting Geocoder client.
+
 # [1.1.0](https://github.com/openearthplatforminitiative/openepi-client-java/compare/v1.0.6...v1.1.0) (2025-06-25)
 
 
